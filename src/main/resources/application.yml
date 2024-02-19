@@ -1,0 +1,79 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: clinical-dose-management-platform
+  profiles:
+    active: local
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+---
+# Local profile (uses H2 in-memory or PostgreSQL if available)
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:dms_dev;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  flyway:
+    enabled: false
+
+dms:
+  temporal:
+    target: localhost:7233
+    namespace: default
+    task-queue: DOSE_MANAGEMENT_TASK_QUEUE
+    enabled: false # Mock / In-memory during offline local dev
+  audit:
+    enforce-hash-chain: true
+    sha256-salt: "dms-21cfr11-secure-salt"
+
+---
+# Docker & Production profile (PostgreSQL 16 + Flyway + Temporal Server)
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://postgres:5432/dose_management_system_dev
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgrespassword
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+dms:
+  temporal:
+    target: temporal:7233
+    namespace: default
+    task-queue: DOSE_MANAGEMENT_TASK_QUEUE
+    enabled: true
+  audit:
+    enforce-hash-chain: true
+    sha256-salt: "dms-21cfr11-secure-salt"
