@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
+  <defs>
+    <!-- Dark Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="100%" stop-color="#040711"/>
+    </linearGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141e33" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0d1527" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Card Glow / Stroke Gradients -->
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glowLight" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="700" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="#1e293b" stroke-width="0.75" stroke-dasharray="4 8" opacity="0.4">
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="380" x2="1200" y2="380"/>
+    <line x1="0" y1="580" x2="1200" y2="580"/>
+    <line x1="300" y1="0" x2="300" y2="700"/>
+    <line x1="600" y1="0" x2="600" y2="700"/>
+    <line x1="900" y1="0" x2="900" y2="700"/>
+  </g>
+
+  <!-- Title & Header Header Bar -->
+  <g transform="translate(60, 45)">
+    <rect x="0" y="0" width="10" height="36" rx="5" fill="#38bdf8"/>
+    <text x="24" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#f8fafc" letter-spacing="-0.5">Clinical Dose Management Platform</text>
+    <text x="24" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#94a3b8" letter-spacing="0.5">21 CFR PART 11 COMPLIANT DISTRIBUTED RADIOPHARMACEUTICAL DOSING &amp; TEMPORAL WORKFLOW ENGINE</text>
+    <rect x="940" y="5" width="140" height="28" rx="14" fill="#0369a1" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1"/>
+    <circle cx="956" cy="19" r="4" fill="#34d399"/>
+    <text x="968" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#38bdf8">USP &lt;823&gt; / FDA CFR</text>
+  </g>
+
+  <!-- Flow Arrows (Connector Paths) -->
+  <g stroke="#475569" stroke-width="2" fill="none" opacity="0.8">
+    <!-- Ingress to Spring Boot Core -->
+    <path d="M 240 240 L 330 240" marker-end="url(#arrow)" stroke="#38bdf8"/>
+    <!-- Core to Physics Engine -->
+    <path d="M 590 200 L 670 200" stroke="#fbbf24"/>
+    <!-- Core to Temporal Engine -->
+    <path d="M 590 280 L 670 280" stroke="#c084fc"/>
+    <!-- Core to 21 CFR Part 11 Ledger -->
+    <path d="M 460 350 L 460 440" stroke="#34d399"/>
+    <!-- Temporal to Notification & Dispatch -->
+    <path d="M 930 280 L 990 280" stroke="#c084fc"/>
+    <!-- Ledger to Postgres Persistence -->
+    <path d="M 680 505 L 750 505" stroke="#34d399"/>
+  </g>
+
+  <!-- LAYER 1: Ingress & Clinical Sites -->
+  <g transform="translate(50, 160)" filter="url(#shadow)">
+    <rect width="190" height="170" rx="12" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="1.5"/>
+    <rect x="16" y="16" width="32" height="32" rx="8" fill="#0369a1" fill-opacity="0.4"/>
+    <text x="24" y="38" font-family="sans-serif" font-size="16" fill="#38bdf8">🏥</text>
+    <text x="58" y="32" font-family="sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Clinical Ingress</text>
+    <text x="58" y="47" font-family="sans-serif" font-size="11" fill="#64748b">PET Imaging Centers</text>
+    <line x1="16" y1="62" x2="174" y2="62" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="85" font-family="monospace" font-size="10" fill="#94a3b8">• Johns Hopkins Oncology</text>
+    <text x="16" y="105" font-family="monospace" font-size="10" fill="#94a3b8">• Mayo Clinic PET Suite</text>
+    <text x="16" y="125" font-family="monospace" font-size="10" fill="#94a3b8">• MD Anderson Theranostics</text>
+    <rect x="16" y="137" width="158" height="20" rx="4" fill="#0f172a"/>
+    <text x="22" y="151" font-family="monospace" font-size="9" fill="#38bdf8">POST /api/v1/orders</text>
+  </g>
+
+  <!-- LAYER 2: Spring Boot 3.2 Core Microservices -->
+  <g transform="translate(330, 140)" filter="url(#shadow)">
+    <rect width="260" height="210" rx="14" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="2"/>
+    <rect x="20" y="18" width="36" height="36" rx="8" fill="#1e3a8a" fill-opacity="0.4"/>
+    <text x="29" y="42" font-family="sans-serif" font-size="18" fill="#60a5fa">☕</text>
+    <text x="66" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">Spring Boot 3.2 Core</text>
+    <text x="66" y="50" font-family="sans-serif" font-size="11" fill="#38bdf8">Java 21 Virtual Threads</text>
+    <line x1="20" y1="66" x2="240" y2="66" stroke="#334155" stroke-width="1"/>
+    
+    <g transform="translate(20, 80)">
+      <rect width="220" height="26" rx="5" fill="#1e293b"/>
+      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">DoseOrderService</text>
+      <text x="160" y="17" font-family="monospace" font-size="9" fill="#38bdf8">@Transactional</text>
+    </g>
+
+    <g transform="translate(20, 115)">
+      <rect width="220" height="26" rx="5" fill="#1e293b"/>
+      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">BatchAllocationService</text>
+      <text x="175" y="17" font-family="monospace" font-size="9" fill="#34d399">Synthesis</text>
+    </g>
+
+    <g transform="translate(20, 150)">
+      <rect width="220" height="26" rx="5" fill="#1e293b"/>
+      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">ElectronicSigValidator</text>
+      <text x="175" y="17" font-family="monospace" font-size="9" fill="#fbbf24">Part 11</text>
+    </g>
+    <text x="20" y="196" font-family="monospace" font-size="9" fill="#64748b">P99 Latency &lt; 14ms | Actuator Micrometer</text>
+  </g>
+
+  <!-- LAYER 3A: Precision Radioactive Decay Physics Engine -->
+  <g transform="translate(670, 130)" filter="url(#shadow)">
+    <rect width="260" height="110" rx="12" fill="url(#cardGrad)" stroke="url(#amberGlow)" stroke-width="1.5"/>
+    <rect x="16" y="14" width="28" height="28" rx="6" fill="#78350f" fill-opacity="0.4"/>
+    <text x="22" y="33" font-family="sans-serif" font-size="14" fill="#fbbf24">☢️</text>
+    <text x="52" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#fef3c7">Precision Decay Engine</text>
+    <text x="52" y="42" font-family="sans-serif" font-size="10" fill="#d97706">Nuclear Exponential Law: A(t)=A₀e^(-λt)</text>
+    <line x1="16" y1="52" x2="244" y2="52" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="70" font-family="monospace" font-size="10" fill="#cbd5e1">• F-18 (t½ = 109.77m) | C-11 (20.36m)</text>
+    <text x="16" y="86" font-family="monospace" font-size="10" fill="#cbd5e1">• Ga-68 (67.71m) | Lu-177 (6.64d)</text>
+    <text x="16" y="102" font-family="monospace" font-size="10" fill="#fbbf24">• Real-time Synthesis Overshoot Auto-Comp</text>
+  </g>
+
+  <!-- LAYER 3B: Temporal Distributed Workflow Engine -->
+  <g transform="translate(670, 255)" filter="url(#shadow)">
+    <rect width="260" height="115" rx="12" fill="url(#cardGrad)" stroke="url(#purpleGlow)" stroke-width="1.5"/>
+    <rect x="16" y="14" width="28" height="28" rx="6" fill="#581c87" fill-opacity="0.4"/>
+    <text x="22" y="33" font-family="sans-serif" font-size="14" fill="#c084fc">⏳</text>
+    <text x="52" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#f3e8ff">Temporal Workflow SDK</text>
+    <text x="52" y="42" font-family="sans-serif" font-size="10" fill="#a855f7">Durable Orchestration &amp; Signals</text>
+    <line x1="16" y1="52" x2="244" y2="52" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="70" font-family="monospace" font-size="10" fill="#cbd5e1">• State Machine: Batch → Prep → QA → Transit</text>
+    <text x="16" y="86" font-family="monospace" font-size="10" fill="#cbd5e1">• Non-blocking Signals (Workflow.await)</text>
+    <text x="16" y="102" font-family="monospace" font-size="10" fill="#c084fc">• Zero-Drift Resilient Dosing Schedule</text>
+  </g>
+
+  <!-- LAYER 4: Notification & Dispatch Target -->
+  <g transform="translate(990, 210)" filter="url(#shadow)">
+    <rect width="160" height="130" rx="12" fill="url(#cardGrad)" stroke="url(#purpleGlow)" stroke-width="1"/>
+    <rect x="14" y="14" width="26" height="26" rx="6" fill="#1e1b4b" fill-opacity="0.6"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="14" fill="#818cf8">🚚</text>
+    <text x="48" y="28" font-family="sans-serif" font-size="12" font-weight="700" fill="#e0e7ff">Lead Pig Dispatch</text>
+    <text x="48" y="42" font-family="sans-serif" font-size="10" fill="#94a3b8">Active Telemetry</text>
+    <line x1="14" y1="52" x2="146" y2="52" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="72" font-family="sans-serif" font-size="10" fill="#cbd5e1">• GPS Courier Transit</text>
+    <text x="14" y="90" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Radiation Monitor</text>
+    <text x="14" y="108" font-family="sans-serif" font-size="10" fill="#34d399">• Site Delivery Confirmation</text>
+  </g>
+
+  <!-- LAYER 5: 21 CFR Part 11 Cryptographic Audit Trail -->
+  <g transform="translate(180, 420)" filter="url(#shadow)">
+    <rect width="500" height="170" rx="14" fill="url(#cardGrad)" stroke="url(#emeraldGlow)" stroke-width="2"/>
+    <rect x="20" y="18" width="36" height="36" rx="8" fill="#064e3b" fill-opacity="0.4"/>
+    <text x="29" y="42" font-family="sans-serif" font-size="18" fill="#34d399">🛡️</text>
+    <text x="68" y="34" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">21 CFR Part 11 Immutable Audit Trail</text>
+    <text x="68" y="50" font-family="sans-serif" font-size="11" fill="#34d399">Forward Cryptographic Hash Chaining &amp; Electronic Signature Ledger</text>
+    <line x1="20" y1="66" x2="480" y2="66" stroke="#334155" stroke-width="1"/>
+    
+    <!-- Mini Hash Chain Visualization -->
+    <g transform="translate(20, 80)">
+      <rect x="0" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      <text x="10" y="16" font-family="monospace" font-size="9" fill="#6ee7b7">RECORD N-1</text>
+      <text x="10" y="32" font-family="monospace" font-size="8" fill="#64748b">Hash: 8a4f9b2d...</text>
+
+      <path d="M 130 21 L 155 21" stroke="#34d399" stroke-width="2"/>
+
+      <rect x="155" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+      <text x="165" y="16" font-family="monospace" font-size="9" fill="#34d399">RECORD N</text>
+      <text x="165" y="32" font-family="monospace" font-size="8" fill="#94a3b8">Prev: 8a4f9b2d...</text>
+
+      <path d="M 285 21 L 310 21" stroke="#34d399" stroke-width="2"/>
+
+      <rect x="310" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      <text x="320" y="16" font-family="monospace" font-size="9" fill="#6ee7b7">RECORD N+1</text>
+      <text x="320" y="32" font-family="monospace" font-size="8" fill="#64748b">Prev: 3e7c01b4...</text>
+    </g>
+
+    <text x="20" y="145" font-family="monospace" font-size="10" fill="#94a3b8">H(N) = SHA-256( H(N-1) | EntityType | EntityId | Action | PerformedBy | Timestamp | Payload | Salt )</text>
+    <text x="20" y="160" font-family="sans-serif" font-size="10" fill="#34d399">✓ Zero Mutation Tolerated: Instant Tamper Pinpoint via GET /api/v1/audit-trail/verify</text>
+  </g>
+
+  <!-- LAYER 6: Persistence Layer (PostgreSQL 16 + Flyway) -->
+  <g transform="translate(750, 420)" filter="url(#shadow)">
+    <rect width="400" height="170" rx="14" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="1.5"/>
+    <rect x="20" y="18" width="36" height="36" rx="8" fill="#1e293b"/>
+    <text x="28" y="42" font-family="sans-serif" font-size="18" fill="#38bdf8">🐘</text>
+    <text x="68" y="34" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">PostgreSQL 16 &amp; Flyway</text>
+    <text x="68" y="50" font-family="sans-serif" font-size="11" fill="#38bdf8">ACID Compliant Relational &amp; Audit Storage</text>
+    <line x1="20" y1="66" x2="380" y2="66" stroke="#334155" stroke-width="1"/>
+    
+    <g transform="translate(20, 80)">
+      <rect width="170" height="24" rx="4" fill="#0f172a"/>
+      <text x="10" y="16" font-family="monospace" font-size="10" fill="#94a3b8">isotopes (t½ index)</text>
+      
+      <rect x="185" y="0" width="175" height="24" rx="4" fill="#0f172a"/>
+      <text x="195" y="16" font-family="monospace" font-size="10" fill="#94a3b8">clinical_protocols</text>
+    </g>
+    <g transform="translate(20, 110)">
+      <rect width="170" height="24" rx="4" fill="#0f172a"/>
+      <text x="10" y="16" font-family="monospace" font-size="10" fill="#94a3b8">dose_orders (Status)</text>
+      
+      <rect x="185" y="0" width="175" height="24" rx="4" fill="#0f172a"/>
+      <text x="195" y="16" font-family="monospace" font-size="10" fill="#94a3b8">audit_logs (Hash Chain)</text>
+    </g>
+    <text x="20" y="156" font-family="monospace" font-size="10" fill="#34d399">Flyway Migrations: V1__init_schema.sql, V2__add_audit_logs.sql</text>
+  </g>
+
+  <!-- Footer Banner -->
+  <g transform="translate(60, 640)">
+    <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b">Engineered by Sai Yasaswini Majety | Senior Software Engineer - Dose Management Platform | Production Grade Architecture</text>
+  </g>
+</svg>

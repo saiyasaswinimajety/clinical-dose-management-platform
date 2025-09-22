@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="480" fill="url(#bg2)"/>
+
+  <!-- Title -->
+  <g transform="translate(40, 40)">
+    <text x="0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#f8fafc">Temporal Workflow Durable Orchestration</text>
+    <text x="0" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94a3b8">RADIOPHARMACEUTICAL PRODUCTION LIFECYCLE &amp; 21 CFR PART 11 GATES</text>
+  </g>
+
+  <!-- Step 1 -->
+  <g transform="translate(40, 120)" filter="url(#shadow2)">
+    <rect width="160" height="240" rx="10" fill="url(#stepGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="28" cy="30" r="14" fill="#0369a1"/>
+    <text x="24" y="35" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff">1</text>
+    <text x="52" y="34" font-family="sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Batch Init</text>
+    <line x1="16" y1="55" x2="144" y2="55" stroke="#334155"/>
+    <text x="16" y="80" font-family="sans-serif" font-size="11" fill="#94a3b8">Trigger:</text>
+    <text x="16" y="96" font-family="monospace" font-size="10" fill="#38bdf8">POST /orders</text>
+    <text x="16" y="125" font-family="sans-serif" font-size="11" fill="#94a3b8">Activity:</text>
+    <text x="16" y="142" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Reserve Hot Cell</text>
+    <text x="16" y="160" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Genesis Audit Log</text>
+    <text x="16" y="178" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Allocate Lot ID</text>
+    <rect x="14" y="200" width="132" height="24" rx="4" fill="#0c4a6e"/>
+    <text x="24" y="216" font-family="monospace" font-size="10" fill="#7dd3fc">ORDER_SUBMITTED</text>
+  </g>
+
+  <!-- Arrow 1 to 2 -->
+  <path d="M 205 240 L 235 240" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Step 2 -->
+  <g transform="translate(235, 120)" filter="url(#shadow2)">
+    <rect width="160" height="240" rx="10" fill="url(#stepGrad)" stroke="#fbbf24" stroke-width="1.5"/>
+    <circle cx="28" cy="30" r="14" fill="#854d0e"/>
+    <text x="24" y="35" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
+    <text x="52" y="34" font-family="sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Synthesis</text>
+    <line x1="16" y1="55" x2="144" y2="55" stroke="#334155"/>
+    <text x="16" y="80" font-family="sans-serif" font-size="11" fill="#94a3b8">Temporal Signal:</text>
+    <text x="16" y="96" font-family="monospace" font-size="10" fill="#fbbf24">synthesisComplete</text>
+    <text x="16" y="125" font-family="sans-serif" font-size="11" fill="#94a3b8">Activity:</text>
+    <text x="16" y="142" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Cyclotron Bombard</text>
+    <text x="16" y="160" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Radio-HPLC Purity</text>
+    <text x="16" y="178" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Yield Telemetry</text>
+    <rect x="14" y="200" width="132" height="24" rx="4" fill="#713f12"/>
+    <text x="24" y="216" font-family="monospace" font-size="10" fill="#fde047">RADIO_SYNTHESIS</text>
+  </g>
+
+  <!-- Arrow 2 to 3 -->
+  <path d="M 400 240 L 430 240" stroke="#64748b" stroke-width="2" fill="none"/>
+
+  <!-- Step 3 -->
+  <g transform="translate(430, 120)" filter="url(#shadow2)">
+    <rect width="160" height="240" rx="10" fill="url(#stepGrad)" stroke="#c084fc" stroke-width="1.5"/>
+    <circle cx="28" cy="30" r="14" fill="#6b21a8"/>
+    <text x="24" y="35" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff">3</text>
+    <text x="52" y="34" font-family="sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Decay Engine</text>
+    <line x1="16" y1="55" x2="144" y2="55" stroke="#334155"/>
+    <text x="16" y="80" font-family="sans-serif" font-size="11" fill="#94a3b8">Activity:</text>
+    <text x="16" y="96" font-family="monospace" font-size="10" fill="#c084fc">computeDecayComp</text>
+    <text x="16" y="125" font-family="sans-serif" font-size="11" fill="#94a3b8">Physics Math:</text>
+    <text x="16" y="142" font-family="sans-serif" font-size="11" fill="#cbd5e1">• λ = ln(2) / t_half</text>
+    <text x="16" y="160" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Transit Window Est</text>
+    <text x="16" y="178" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Dose Compensation</text>
+    <rect x="14" y="200" width="132" height="24" rx="4" fill="#581c87"/>
+    <text x="18" y="216" font-family="monospace" font-size="10" fill="#e9d5ff">DECAY_COMPENSATED</text>
+  </g>
+
+  <!-- Arrow 3 to 4 -->
+  <path d="M 595 240 L 625 240" stroke="#64748b" stroke-width="2" fill="none"/>
+
+  <!-- Step 4 -->
+  <g transform="translate(625, 120)" filter="url(#shadow2)">
+    <rect width="160" height="240" rx="10" fill="url(#stepGrad)" stroke="#34d399" stroke-width="1.5"/>
+    <circle cx="28" cy="30" r="14" fill="#065f46"/>
+    <text x="24" y="35" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff">4</text>
+    <text x="52" y="34" font-family="sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">QA Release</text>
+    <line x1="16" y1="55" x2="144" y2="55" stroke="#334155"/>
+    <text x="16" y="80" font-family="sans-serif" font-size="11" fill="#94a3b8">Temporal Signal:</text>
+    <text x="16" y="96" font-family="monospace" font-size="10" fill="#34d399">qaReleased</text>
+    <text x="16" y="125" font-family="sans-serif" font-size="11" fill="#94a3b8">Compliance Gate:</text>
+    <text x="16" y="142" font-family="sans-serif" font-size="11" fill="#cbd5e1">• 21 CFR Part 11 Sig</text>
+    <text x="16" y="160" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Hash-Chain Seal</text>
+    <text x="16" y="178" font-family="sans-serif" font-size="11" fill="#cbd5e1">• USP &lt;823&gt; Envelope</text>
+    <rect x="14" y="200" width="132" height="24" rx="4" fill="#064e3b"/>
+    <text x="32" y="216" font-family="monospace" font-size="10" fill="#a7f3d0">QA_RELEASED</text>
+  </g>
+
+  <!-- Arrow 4 to 5 -->
+  <path d="M 790 240 L 820 240" stroke="#64748b" stroke-width="2" fill="none"/>
+
+  <!-- Step 5 -->
+  <g transform="translate(820, 120)" filter="url(#shadow2)">
+    <rect width="140" height="240" rx="10" fill="url(#stepGrad)" stroke="#60a5fa" stroke-width="1.5"/>
+    <circle cx="28" cy="30" r="14" fill="#1e3a8a"/>
+    <text x="24" y="35" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff">5</text>
+    <text x="52" y="34" font-family="sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Dispatch</text>
+    <line x1="16" y1="55" x2="124" y2="55" stroke="#334155"/>
+    <text x="16" y="80" font-family="sans-serif" font-size="11" fill="#94a3b8">Activity:</text>
+    <text x="16" y="96" font-family="monospace" font-size="10" fill="#60a5fa">dispatchAndNotify</text>
+    <text x="16" y="125" font-family="sans-serif" font-size="11" fill="#94a3b8">Final Execution:</text>
+    <text x="16" y="142" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Lead Container</text>
+    <text x="16" y="160" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Real-time GPS</text>
+    <text x="16" y="178" font-family="sans-serif" font-size="11" fill="#cbd5e1">• Site Push Alert</text>
+    <rect x="14" y="200" width="112" height="24" rx="4" fill="#1e293b"/>
+    <text x="26" y="216" font-family="monospace" font-size="10" fill="#93c5fd">DISPATCHED</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="40" y="420" font-family="monospace" font-size="11" fill="#64748b">Workflow.await() ensures state persists through any system crash, restart, or network interruption without data loss.</text>
+</svg>
