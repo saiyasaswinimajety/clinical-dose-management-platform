@@ -1,227 +1,286 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 940" width="100%" height="100%" style="background:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
   <defs>
-    <!-- Dark Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0f1d"/>
-      <stop offset="100%" stop-color="#040711"/>
+    <!-- Background Gradients -->
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f293d"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="authGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1b4e"/>
+      <stop offset="100%" stop-color="#190e2e"/>
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2538"/>
+      <stop offset="100%" stop-color="#0f1422"/>
+    </linearGradient>
+    <linearGradient id="temporalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b1d54"/>
+      <stop offset="100%" stop-color="#210d33"/>
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c2b3d"/>
+      <stop offset="100%" stop-color="#0d1824"/>
+    </linearGradient>
+    <linearGradient id="physicsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d280e"/>
+      <stop offset="100%" stop-color="#211504"/>
+    </linearGradient>
+    <linearGradient id="auditGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c382b"/>
+      <stop offset="100%" stop-color="#041f17"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#172033"/>
+      <stop offset="100%" stop-color="#0e1422"/>
     </linearGradient>
 
-    <!-- Card Background Gradient -->
-    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#141e33" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#0d1527" stop-opacity="0.9"/>
-    </linearGradient>
-
-    <!-- Card Glow / Stroke Gradients -->
-    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#34d399"/>
-      <stop offset="100%" stop-color="#10b981"/>
-    </linearGradient>
-    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#c084fc"/>
-      <stop offset="100%" stop-color="#a855f7"/>
-    </linearGradient>
-    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
-    </linearGradient>
-
-    <!-- Drop Shadows -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.6"/>
+    <!-- Drop Shadows & Glows -->
+    <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
-    <filter id="glowLight" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <filter id="greenGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#10b981" flood-opacity="0.35"/>
     </filter>
+    <filter id="blueGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.35"/>
+    </filter>
+    <filter id="amberGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f59e0b" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+    </marker>
   </defs>
 
-  <!-- Canvas Background -->
-  <rect width="1200" height="700" fill="url(#bgGrad)"/>
-  
-  <!-- Subtle Grid Lines -->
-  <g stroke="#1e293b" stroke-width="0.75" stroke-dasharray="4 8" opacity="0.4">
-    <line x1="0" y1="140" x2="1200" y2="140"/>
-    <line x1="0" y1="380" x2="1200" y2="380"/>
-    <line x1="0" y1="580" x2="1200" y2="580"/>
-    <line x1="300" y1="0" x2="300" y2="700"/>
-    <line x1="600" y1="0" x2="600" y2="700"/>
-    <line x1="900" y1="0" x2="900" y2="700"/>
-  </g>
-
-  <!-- Title & Header Header Bar -->
-  <g transform="translate(60, 45)">
-    <rect x="0" y="0" width="10" height="36" rx="5" fill="#38bdf8"/>
-    <text x="24" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#f8fafc" letter-spacing="-0.5">Clinical Dose Management Platform</text>
-    <text x="24" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#94a3b8" letter-spacing="0.5">21 CFR PART 11 COMPLIANT DISTRIBUTED RADIOPHARMACEUTICAL DOSING &amp; TEMPORAL WORKFLOW ENGINE</text>
-    <rect x="940" y="5" width="140" height="28" rx="14" fill="#0369a1" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1"/>
-    <circle cx="956" cy="19" r="4" fill="#34d399"/>
-    <text x="968" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#38bdf8">USP &lt;823&gt; / FDA CFR</text>
-  </g>
-
-  <!-- Flow Arrows (Connector Paths) -->
-  <g stroke="#475569" stroke-width="2" fill="none" opacity="0.8">
-    <!-- Ingress to Spring Boot Core -->
-    <path d="M 240 240 L 330 240" marker-end="url(#arrow)" stroke="#38bdf8"/>
-    <!-- Core to Physics Engine -->
-    <path d="M 590 200 L 670 200" stroke="#fbbf24"/>
-    <!-- Core to Temporal Engine -->
-    <path d="M 590 280 L 670 280" stroke="#c084fc"/>
-    <!-- Core to 21 CFR Part 11 Ledger -->
-    <path d="M 460 350 L 460 440" stroke="#34d399"/>
-    <!-- Temporal to Notification & Dispatch -->
-    <path d="M 930 280 L 990 280" stroke="#c084fc"/>
-    <!-- Ledger to Postgres Persistence -->
-    <path d="M 680 505 L 750 505" stroke="#34d399"/>
-  </g>
-
-  <!-- LAYER 1: Ingress & Clinical Sites -->
-  <g transform="translate(50, 160)" filter="url(#shadow)">
-    <rect width="190" height="170" rx="12" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="1.5"/>
-    <rect x="16" y="16" width="32" height="32" rx="8" fill="#0369a1" fill-opacity="0.4"/>
-    <text x="24" y="38" font-family="sans-serif" font-size="16" fill="#38bdf8">🏥</text>
-    <text x="58" y="32" font-family="sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Clinical Ingress</text>
-    <text x="58" y="47" font-family="sans-serif" font-size="11" fill="#64748b">PET Imaging Centers</text>
-    <line x1="16" y1="62" x2="174" y2="62" stroke="#334155" stroke-width="1"/>
-    <text x="16" y="85" font-family="monospace" font-size="10" fill="#94a3b8">• Johns Hopkins Oncology</text>
-    <text x="16" y="105" font-family="monospace" font-size="10" fill="#94a3b8">• Mayo Clinic PET Suite</text>
-    <text x="16" y="125" font-family="monospace" font-size="10" fill="#94a3b8">• MD Anderson Theranostics</text>
-    <rect x="16" y="137" width="158" height="20" rx="4" fill="#0f172a"/>
-    <text x="22" y="151" font-family="monospace" font-size="9" fill="#38bdf8">POST /api/v1/orders</text>
-  </g>
-
-  <!-- LAYER 2: Spring Boot 3.2 Core Microservices -->
-  <g transform="translate(330, 140)" filter="url(#shadow)">
-    <rect width="260" height="210" rx="14" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="2"/>
-    <rect x="20" y="18" width="36" height="36" rx="8" fill="#1e3a8a" fill-opacity="0.4"/>
-    <text x="29" y="42" font-family="sans-serif" font-size="18" fill="#60a5fa">☕</text>
-    <text x="66" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">Spring Boot 3.2 Core</text>
-    <text x="66" y="50" font-family="sans-serif" font-size="11" fill="#38bdf8">Java 21 Virtual Threads</text>
-    <line x1="20" y1="66" x2="240" y2="66" stroke="#334155" stroke-width="1"/>
+  <!-- Title Header Bar -->
+  <g transform="translate(40, 30)">
+    <rect x="0" y="0" width="8" height="42" rx="4" fill="#38bdf8"/>
+    <text x="20" y="24" font-size="24" font-weight="700" fill="#f8fafc" letter-spacing="-0.5">Dose Management System (DMS) Platform Architecture</text>
+    <text x="20" y="44" font-size="12" font-weight="500" fill="#94a3b8" letter-spacing="0.5">DISTRIBUTED SYSTEM TOPOLOGY • FDA 21 CFR PART 11 COMPLIANT GxP RADIOPHARMACEUTICAL DOSING</text>
     
-    <g transform="translate(20, 80)">
-      <rect width="220" height="26" rx="5" fill="#1e293b"/>
-      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">DoseOrderService</text>
-      <text x="160" y="17" font-family="monospace" font-size="9" fill="#38bdf8">@Transactional</text>
-    </g>
-
-    <g transform="translate(20, 115)">
-      <rect width="220" height="26" rx="5" fill="#1e293b"/>
-      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">BatchAllocationService</text>
-      <text x="175" y="17" font-family="monospace" font-size="9" fill="#34d399">Synthesis</text>
-    </g>
-
-    <g transform="translate(20, 150)">
-      <rect width="220" height="26" rx="5" fill="#1e293b"/>
-      <text x="10" y="17" font-family="sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">ElectronicSigValidator</text>
-      <text x="175" y="17" font-family="monospace" font-size="9" fill="#fbbf24">Part 11</text>
-    </g>
-    <text x="20" y="196" font-family="monospace" font-size="9" fill="#64748b">P99 Latency &lt; 14ms | Actuator Micrometer</text>
+    <rect x="940" y="4" width="260" height="32" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <circle cx="956" cy="20" r="5" fill="#10b981"/>
+    <text x="970" y="24" font-size="11" font-weight="700" fill="#e2e8f0">F-18 ZERO-INVENTORY CONTINUOUS DECAY</text>
   </g>
 
-  <!-- LAYER 3A: Precision Radioactive Decay Physics Engine -->
-  <g transform="translate(670, 130)" filter="url(#shadow)">
-    <rect width="260" height="110" rx="12" fill="url(#cardGrad)" stroke="url(#amberGlow)" stroke-width="1.5"/>
-    <rect x="16" y="14" width="28" height="28" rx="6" fill="#78350f" fill-opacity="0.4"/>
-    <text x="22" y="33" font-family="sans-serif" font-size="14" fill="#fbbf24">☢️</text>
-    <text x="52" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#fef3c7">Precision Decay Engine</text>
-    <text x="52" y="42" font-family="sans-serif" font-size="10" fill="#d97706">Nuclear Exponential Law: A(t)=A₀e^(-λt)</text>
-    <line x1="16" y1="52" x2="244" y2="52" stroke="#334155" stroke-width="1"/>
-    <text x="16" y="70" font-family="monospace" font-size="10" fill="#cbd5e1">• F-18 (t½ = 109.77m) | C-11 (20.36m)</text>
-    <text x="16" y="86" font-family="monospace" font-size="10" fill="#cbd5e1">• Ga-68 (67.71m) | Lu-177 (6.64d)</text>
-    <text x="16" y="102" font-family="monospace" font-size="10" fill="#fbbf24">• Real-time Synthesis Overshoot Auto-Comp</text>
+  <!-- ================= LEFT COLUMN: DISTRIBUTED SYSTEM TOPOLOGY (Width 640) ================= -->
+
+  <!-- Tier 1: Client Layer -->
+  <g transform="translate(40, 95)" filter="url(#boxShadow)">
+    <rect width="640" height="90" rx="10" fill="url(#clientGrad)" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="18" y="16" width="36" height="36" rx="8" fill="#1e3a8a"/>
+    <text x="27" y="40" font-size="18">💻</text>
+    <text x="66" y="32" font-size="15" font-weight="700" fill="#ffffff">Client Tier (React 18 SPA on Vite)</text>
+    <text x="66" y="50" font-size="11" fill="#93c5fd">8-Level Security Hierarchy (L1-L8) • RouteGuard &amp; EntityGuard • Port 3000 / Nginx Ingress</text>
+    <line x1="18" y1="62" x2="622" y2="62" stroke="#334155" stroke-width="1"/>
+    <text x="18" y="79" font-family="monospace" font-size="10" fill="#cbd5e1">Imaging Site Portal (orders.lilly.com)  |  Commercial &amp; Clinical Trials  |  14 Distinct Stakeholder Personas</text>
   </g>
 
-  <!-- LAYER 3B: Temporal Distributed Workflow Engine -->
-  <g transform="translate(670, 255)" filter="url(#shadow)">
-    <rect width="260" height="115" rx="12" fill="url(#cardGrad)" stroke="url(#purpleGlow)" stroke-width="1.5"/>
-    <rect x="16" y="14" width="28" height="28" rx="6" fill="#581c87" fill-opacity="0.4"/>
-    <text x="22" y="33" font-family="sans-serif" font-size="14" fill="#c084fc">⏳</text>
-    <text x="52" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#f3e8ff">Temporal Workflow SDK</text>
-    <text x="52" y="42" font-family="sans-serif" font-size="10" fill="#a855f7">Durable Orchestration &amp; Signals</text>
-    <line x1="16" y1="52" x2="244" y2="52" stroke="#334155" stroke-width="1"/>
-    <text x="16" y="70" font-family="monospace" font-size="10" fill="#cbd5e1">• State Machine: Batch → Prep → QA → Transit</text>
-    <text x="16" y="86" font-family="monospace" font-size="10" fill="#cbd5e1">• Non-blocking Signals (Workflow.await)</text>
-    <text x="16" y="102" font-family="monospace" font-size="10" fill="#c084fc">• Zero-Drift Resilient Dosing Schedule</text>
-  </g>
+  <!-- Flow 1 to 2 -->
+  <line x1="360" y1="185" x2="360" y2="215" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="370" y="204" font-size="10" font-weight="600" fill="#38bdf8">OIDC / OAuth2 JWT</text>
 
-  <!-- LAYER 4: Notification & Dispatch Target -->
-  <g transform="translate(990, 210)" filter="url(#shadow)">
-    <rect width="160" height="130" rx="12" fill="url(#cardGrad)" stroke="url(#purpleGlow)" stroke-width="1"/>
-    <rect x="14" y="14" width="26" height="26" rx="6" fill="#1e1b4b" fill-opacity="0.6"/>
-    <text x="20" y="32" font-family="sans-serif" font-size="14" fill="#818cf8">🚚</text>
-    <text x="48" y="28" font-family="sans-serif" font-size="12" font-weight="700" fill="#e0e7ff">Lead Pig Dispatch</text>
-    <text x="48" y="42" font-family="sans-serif" font-size="10" fill="#94a3b8">Active Telemetry</text>
-    <line x1="14" y1="52" x2="146" y2="52" stroke="#334155" stroke-width="1"/>
-    <text x="14" y="72" font-family="sans-serif" font-size="10" fill="#cbd5e1">• GPS Courier Transit</text>
-    <text x="14" y="90" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Radiation Monitor</text>
-    <text x="14" y="108" font-family="sans-serif" font-size="10" fill="#34d399">• Site Delivery Confirmation</text>
-  </g>
-
-  <!-- LAYER 5: 21 CFR Part 11 Cryptographic Audit Trail -->
-  <g transform="translate(180, 420)" filter="url(#shadow)">
-    <rect width="500" height="170" rx="14" fill="url(#cardGrad)" stroke="url(#emeraldGlow)" stroke-width="2"/>
-    <rect x="20" y="18" width="36" height="36" rx="8" fill="#064e3b" fill-opacity="0.4"/>
-    <text x="29" y="42" font-family="sans-serif" font-size="18" fill="#34d399">🛡️</text>
-    <text x="68" y="34" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">21 CFR Part 11 Immutable Audit Trail</text>
-    <text x="68" y="50" font-family="sans-serif" font-size="11" fill="#34d399">Forward Cryptographic Hash Chaining &amp; Electronic Signature Ledger</text>
-    <line x1="20" y1="66" x2="480" y2="66" stroke="#334155" stroke-width="1"/>
+  <!-- Tier 2: Identity & Security Gateway -->
+  <g transform="translate(40, 215)" filter="url(#boxShadow)">
+    <rect width="640" height="95" rx="10" fill="url(#authGrad)" stroke="#a855f7" stroke-width="1.5"/>
+    <rect x="18" y="16" width="36" height="36" rx="8" fill="#581c87"/>
+    <text x="27" y="40" font-size="18">🔐</text>
+    <text x="66" y="32" font-size="15" font-weight="700" fill="#ffffff">Dual-Identity Security Gateway</text>
+    <text x="66" y="50" font-size="11" fill="#d8b4fe">Dual Auth Segregation: Internal Lilly Azure AD SSO vs External ID.me Identity Proofing</text>
     
-    <!-- Mini Hash Chain Visualization -->
-    <g transform="translate(20, 80)">
-      <rect x="0" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
-      <text x="10" y="16" font-family="monospace" font-size="9" fill="#6ee7b7">RECORD N-1</text>
-      <text x="10" y="32" font-family="monospace" font-size="8" fill="#64748b">Hash: 8a4f9b2d...</text>
-
-      <path d="M 130 21 L 155 21" stroke="#34d399" stroke-width="2"/>
-
-      <rect x="155" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
-      <text x="165" y="16" font-family="monospace" font-size="9" fill="#34d399">RECORD N</text>
-      <text x="165" y="32" font-family="monospace" font-size="8" fill="#94a3b8">Prev: 8a4f9b2d...</text>
-
-      <path d="M 285 21 L 310 21" stroke="#34d399" stroke-width="2"/>
-
-      <rect x="310" y="0" width="130" height="42" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
-      <text x="320" y="16" font-family="monospace" font-size="9" fill="#6ee7b7">RECORD N+1</text>
-      <text x="320" y="32" font-family="monospace" font-size="8" fill="#64748b">Prev: 3e7c01b4...</text>
-    </g>
-
-    <text x="20" y="145" font-family="monospace" font-size="10" fill="#94a3b8">H(N) = SHA-256( H(N-1) | EntityType | EntityId | Action | PerformedBy | Timestamp | Payload | Salt )</text>
-    <text x="20" y="160" font-family="sans-serif" font-size="10" fill="#34d399">✓ Zero Mutation Tolerated: Instant Tamper Pinpoint via GET /api/v1/audit-trail/verify</text>
-  </g>
-
-  <!-- LAYER 6: Persistence Layer (PostgreSQL 16 + Flyway) -->
-  <g transform="translate(750, 420)" filter="url(#shadow)">
-    <rect width="400" height="170" rx="14" fill="url(#cardGrad)" stroke="url(#blueGlow)" stroke-width="1.5"/>
-    <rect x="20" y="18" width="36" height="36" rx="8" fill="#1e293b"/>
-    <text x="28" y="42" font-family="sans-serif" font-size="18" fill="#38bdf8">🐘</text>
-    <text x="68" y="34" font-family="sans-serif" font-size="16" font-weight="700" fill="#f8fafc">PostgreSQL 16 &amp; Flyway</text>
-    <text x="68" y="50" font-family="sans-serif" font-size="11" fill="#38bdf8">ACID Compliant Relational &amp; Audit Storage</text>
-    <line x1="20" y1="66" x2="380" y2="66" stroke="#334155" stroke-width="1"/>
-    
-    <g transform="translate(20, 80)">
-      <rect width="170" height="24" rx="4" fill="#0f172a"/>
-      <text x="10" y="16" font-family="monospace" font-size="10" fill="#94a3b8">isotopes (t½ index)</text>
+    <g transform="translate(18, 60)">
+      <rect width="295" height="24" rx="4" fill="#1e1b4b"/>
+      <text x="10" y="16" font-family="monospace" font-size="10" fill="#c084fc">Azure AD: 8 Internal Personas (L7 Groups)</text>
       
-      <rect x="185" y="0" width="175" height="24" rx="4" fill="#0f172a"/>
-      <text x="195" y="16" font-family="monospace" font-size="10" fill="#94a3b8">clinical_protocols</text>
+      <rect x="305" y="0" width="295" height="24" rx="4" fill="#1e1b4b"/>
+      <text x="315" y="16" font-family="monospace" font-size="10" fill="#a78bfa">ID.me: 6 External Personas (Cyclotron/Sites)</text>
     </g>
-    <g transform="translate(20, 110)">
-      <rect width="170" height="24" rx="4" fill="#0f172a"/>
-      <text x="10" y="16" font-family="monospace" font-size="10" fill="#94a3b8">dose_orders (Status)</text>
-      
-      <rect x="185" y="0" width="175" height="24" rx="4" fill="#0f172a"/>
-      <text x="195" y="16" font-family="monospace" font-size="10" fill="#94a3b8">audit_logs (Hash Chain)</text>
+  </g>
+
+  <!-- Flow 2 to 3 -->
+  <line x1="360" y1="310" x2="360" y2="340" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="370" y="329" font-size="10" font-weight="600" fill="#38bdf8">Validated Bearer JWT</text>
+
+  <!-- Tier 3: AWS EKS Kubernetes Cluster (Core Services) -->
+  <g transform="translate(40, 340)" filter="url(#boxShadow)">
+    <rect width="640" height="265" rx="12" fill="url(#appGrad)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <rect x="18" y="16" width="36" height="36" rx="8" fill="#0369a1"/>
+    <text x="27" y="40" font-size="18">☸️</text>
+    <text x="66" y="32" font-size="15" font-weight="700" fill="#ffffff">Application Tier (AWS EKS Cluster • Port 8080)</text>
+    <text x="66" y="50" font-size="11" fill="#38bdf8">Spring Boot 3.2 / Java 21 Virtual Threads • Stateless Microservices</text>
+    <line x1="18" y1="62" x2="622" y2="62" stroke="#334155" stroke-width="1"/>
+
+    <!-- Service Modules Grid -->
+    <g transform="translate(18, 72)">
+      <rect width="295" height="42" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+      <text x="12" y="20" font-size="12" font-weight="700" fill="#ffffff">DoseOrderService</text>
+      <text x="12" y="34" font-size="10" fill="#94a3b8">Cancel-and-Recreate GxP Atomic Swaps</text>
+
+      <rect x="305" y="0" width="295" height="42" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text x="317" y="20" font-size="12" font-weight="700" fill="#ffffff">RadioactiveDecayService</text>
+      <text x="317" y="34" font-size="10" fill="#fbbf24">A(t) = A₀·e^(-λt) Sizing &amp; Overshoot Calc</text>
     </g>
-    <text x="20" y="156" font-family="monospace" font-size="10" fill="#34d399">Flyway Migrations: V1__init_schema.sql, V2__add_audit_logs.sql</text>
+
+    <g transform="translate(18, 122)">
+      <rect width="295" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text x="12" y="20" font-size="12" font-weight="700" fill="#ffffff">CapacityManagementService</text>
+      <text x="12" y="34" font-size="10" fill="#34d399">10-Min Soft-Lock TTL &amp; Firm Lock Upgrade</text>
+
+      <rect x="305" y="0" width="295" height="42" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1"/>
+      <text x="317" y="20" font-size="12" font-weight="700" fill="#ffffff">AuditLedgerService</text>
+      <text x="317" y="34" font-size="10" fill="#c084fc">Dual-Layer: DB Trigger JSON + Loki Stream</text>
+    </g>
+
+    <!-- Temporal Worker Box Inside Cluster -->
+    <g transform="translate(18, 172)">
+      <rect width="600" height="52" rx="6" fill="url(#temporalGrad)" stroke="#c084fc" stroke-width="1.5"/>
+      <text x="14" y="22" font-size="12" font-weight="700" fill="#f3e8ff">⏳ Temporal Distributed Saga Workers</text>
+      <text x="14" y="40" font-size="10" fill="#d8b4fe">Commercial 2-Step (CS → Mfg) &amp; Clinical 3-Step Parallel (CS → ClinOps + Mfg) Workflows</text>
+      <rect x="470" y="14" width="116" height="24" rx="4" fill="#0f172a"/>
+      <text x="480" y="30" font-family="monospace" font-size="10" fill="#38bdf8">gRPC :7233</text>
+    </g>
+
+    <text x="18" y="248" font-family="monospace" font-size="10" fill="#94a3b8">Sub-15ms P99 Latency • Actuator Prometheus Metrics • Zero-Downtime Rolling Deploys</text>
+  </g>
+
+  <!-- Flow 3 to 4 -->
+  <line x1="360" y1="605" x2="360" y2="635" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Tier 4: Persistence, Infrastructure & Compliance Lake -->
+  <g transform="translate(40, 635)" filter="url(#boxShadow)">
+    <rect width="640" height="255" rx="12" fill="url(#dbGrad)" stroke="#0ea5e9" stroke-width="1.5"/>
+    <rect x="18" y="16" width="36" height="36" rx="8" fill="#0369a1"/>
+    <text x="27" y="40" font-size="18">💾</text>
+    <text x="66" y="32" font-size="15" font-weight="700" fill="#ffffff">Persistence &amp; Compliance Lake Tier</text>
+    <text x="66" y="50" font-size="11" fill="#38bdf8">ACID Ground Truth • CDC Log Aggregation • Outbound Email Gateways</text>
+    <line x1="18" y1="62" x2="622" y2="62" stroke="#334155" stroke-width="1"/>
+
+    <g transform="translate(18, 72)">
+      <!-- PostgreSQL -->
+      <rect width="295" height="100" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+      <text x="12" y="22" font-size="12" font-weight="700" fill="#38bdf8">🐘 PostgreSQL 16 (Port 5432)</text>
+      <text x="12" y="40" font-size="10" fill="#cbd5e1">• Flyway Managed Idempotent Migrations</text>
+      <text x="12" y="56" font-size="10" fill="#cbd5e1">• 23 Master Tables (partners, protocols, orders)</text>
+      <text x="12" y="72" font-size="10" fill="#cbd5e1">• DB Trigger Functions: log_entity_changes()</text>
+      <text x="12" y="88" font-size="10" fill="#34d399">• public.audit_logs with row_to_json(NEW/OLD)</text>
+
+      <!-- Temporal Cluster + AWS Infrastructure -->
+      <rect x="305" y="0" width="295" height="100" rx="8" fill="#0f172a" stroke="#c084fc" stroke-width="1"/>
+      <text x="317" y="22" font-size="12" font-weight="700" fill="#c084fc">⚙️ External Cloud Integrations</text>
+      <text x="317" y="40" font-size="10" fill="#cbd5e1">• Temporal Server v1.24 (Durable Execution)</text>
+      <text x="317" y="56" font-size="10" fill="#cbd5e1">• AWS S3 Data Lake (CdcSyncScheduler / 60s)</text>
+      <text x="317" y="72" font-size="10" fill="#cbd5e1">• AWS SES Outbound Notifications Gateway</text>
+      <text x="317" y="88" font-size="10" fill="#cbd5e1">• NetSuite ERP (500K ID Sequence Reservation)</text>
+    </g>
+
+    <rect x="18" y="184" width="600" height="30" rx="4" fill="#032b43" stroke="#0ea5e9" stroke-width="1"/>
+    <text x="28" y="203" font-family="monospace" font-size="10" fill="#e0f2fe">Continuous Replication: Multi-AZ PostgreSQL 16 + Flyway Baselines + Encrypted EBS</text>
+  </g>
+
+  <!-- ================= RIGHT COLUMN: DOMAIN LOGIC & GxP COMPLIANCE (Width 520) ================= -->
+
+  <!-- Panel 1: Nuclear Physics & Decay Sizing Algorithm -->
+  <g transform="translate(720, 95)" filter="url(#boxShadow)">
+    <rect width="520" height="250" rx="12" fill="url(#physicsGrad)" stroke="#f59e0b" stroke-width="1.5" filter="url(#amberGlow)"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#78350f"/>
+    <text x="26" y="40" font-size="18">☢️</text>
+    <text x="64" y="32" font-size="15" font-weight="700" fill="#fef3c7">Nuclear Physics Decay Sizing Engine</text>
+    <text x="64" y="48" font-size="11" fill="#fbbf24">Zero-Inventory Exponential Law: A(t) = A₀ · e^(-λt)</text>
+    <line x1="18" y1="58" x2="502" y2="58" stroke="#78350f" stroke-width="1"/>
+
+    <g transform="translate(18, 68)">
+      <rect width="484" height="52" rx="6" fill="#1a1208" stroke="#d97706" stroke-width="1"/>
+      <text x="12" y="20" font-family="monospace" font-size="11" font-weight="700" fill="#fde047">F-18 Radioactivity Half-Life Constant:</text>
+      <text x="12" y="38" font-family="monospace" font-size="11" fill="#ffffff">t½ = 109.77 min  ⟹  λ = ln(2)/t½ = 0.00631454 min⁻¹</text>
+    </g>
+
+    <text x="18" y="142" font-size="12" font-weight="700" fill="#ffffff">Synthesizer Sizing Calculation (Production Planning):</text>
+    <text x="18" y="160" font-size="11" fill="#cbd5e1">To deliver target activity <tspan font-family="monospace" fill="#fde047">A_calib</tspan> at scheduled calibration time <tspan font-family="monospace" fill="#fde047">t_calib</tspan>:</text>
+    <rect x="18" y="168" width="484" height="32" rx="4" fill="#0f172a"/>
+    <text x="28" y="189" font-family="monospace" font-size="12" font-weight="700" fill="#38bdf8">A_EOS = A_calib · exp( λ · (t_calib - t_EOS) )</text>
+
+    <text x="18" y="222" font-size="11" fill="#fed7aa">• Maximum Allowable Shelf Life: Exactly 10 Hours from End of Synthesis (EOS)</text>
+    <text x="18" y="238" font-size="11" fill="#fed7aa">• Supported Isotopes: F-18 (109.77m), C-11 (20.36m), Ga-68 (67.71m), Lu-177 (6.64d)</text>
+  </g>
+
+  <!-- Panel 2: Dual-Layer 21 CFR Part 11 Audit Trail & Ledger -->
+  <g transform="translate(720, 365)" filter="url(#boxShadow)">
+    <rect width="520" height="280" rx="12" fill="url(#auditGrad)" stroke="#10b981" stroke-width="2" filter="url(#greenGlow)"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#064e3b"/>
+    <text x="26" y="40" font-size="18">🛡️</text>
+    <text x="64" y="32" font-size="15" font-weight="700" fill="#ffffff">FDA 21 CFR Part 11 Dual-Layer Audit</text>
+    <text x="64" y="48" font-size="11" fill="#34d399">Dual-Layer Auditing Architecture &amp; Immutable Hash Chaining</text>
+    <line x1="18" y1="58" x2="502" y2="58" stroke="#065f46" stroke-width="1"/>
+
+    <!-- Dual Layer Boxes -->
+    <g transform="translate(18, 70)">
+      <rect width="235" height="58" rx="6" fill="#022c22" stroke="#10b981" stroke-width="1"/>
+      <text x="10" y="18" font-size="11" font-weight="700" fill="#34d399">1. Application Layer (Loki)</text>
+      <text x="10" y="34" font-size="10" fill="#cbd5e1">• Structured Business Event Stream</text>
+      <text x="10" y="48" font-size="10" fill="#cbd5e1">• AuditLogger.logBusinessEvent()</text>
+
+      <rect x="249" y="0" width="235" height="58" rx="6" fill="#022c22" stroke="#10b981" stroke-width="1"/>
+      <text x="259" y="18" font-size="11" font-weight="700" fill="#34d399">2. Database Trigger Layer</text>
+      <text x="259" y="34" font-size="10" fill="#cbd5e1">• Master tables log_*_changes()</text>
+      <text x="259" y="48" font-size="10" fill="#cbd5e1">• row_to_json(OLD / NEW) diffs</text>
+    </g>
+
+    <!-- Hash Chain Mechanism -->
+    <g transform="translate(18, 140)">
+      <rect width="484" height="60" rx="6" fill="#061f18" stroke="#059669" stroke-width="1"/>
+      <text x="12" y="18" font-size="11" font-weight="700" fill="#a7f3d0">Cryptographic Forward Hash Chain Formula:</text>
+      <text x="12" y="35" font-family="monospace" font-size="9" fill="#e2e8f0">H(N) = SHA-256( H(N-1) | Entity | Id | Action | User | Time | Payload | Salt )</text>
+      <text x="12" y="50" font-size="10" fill="#34d399">✓ Zero Mutation Tolerated: Recomputing chain pinpoints exact record ID on tamper.</text>
+    </g>
+
+    <text x="18" y="222" font-size="11" fill="#cbd5e1">• Electronic Signatures: User identity, password/MFA challenge, reason for change</text>
+    <text x="18" y="238" font-size="11" fill="#cbd5e1">• Non-Repudiation: Every order state transition signed and tied to client IP</text>
+    <text x="18" y="254" font-size="11" fill="#34d399">• Constant-Time Verification: GET /api/v1/audit-trail/verify traverses 100k+ entries/sec</text>
+  </g>
+
+  <!-- Panel 3: Capacity Reservation & 3-Lane Highway Logistics -->
+  <g transform="translate(720, 665)" filter="url(#boxShadow)">
+    <rect width="520" height="225" rx="12" fill="url(#panelGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#1e3a8a"/>
+    <text x="26" y="40" font-size="18">⚡</text>
+    <text x="64" y="32" font-size="15" font-weight="700" fill="#ffffff">Capacity Reservation &amp; Logistics Rules</text>
+    <text x="64" y="48" font-size="11" fill="#38bdf8">10-Minute Soft Lock TTL • 3-Lane Highway Priority Model</text>
+    <line x1="18" y1="58" x2="502" y2="58" stroke="#334155" stroke-width="1"/>
+
+    <g transform="translate(18, 70)">
+      <rect width="150" height="54" rx="6" fill="#1e293b"/>
+      <text x="10" y="20" font-size="11" font-weight="700" fill="#93c5fd">Lane 1: Primary</text>
+      <text x="10" y="34" font-size="10" fill="#94a3b8">Dedicated route</text>
+      <text x="10" y="46" font-size="10" fill="#38bdf8">Default synthesizer</text>
+
+      <rect x="165" y="0" width="150" height="54" rx="6" fill="#1e293b"/>
+      <text x="175" y="20" font-size="11" font-weight="700" fill="#fde047">Lane 2: Secondary</text>
+      <text x="175" y="34" font-size="10" fill="#94a3b8">Shared cyclotron</text>
+      <text x="175" y="46" font-size="10" fill="#fbbf24">Capacity validated</text>
+
+      <rect x="330" y="0" width="154" height="54" rx="6" fill="#1e293b"/>
+      <text x="340" y="20" font-size="11" font-weight="700" fill="#f472b6">Lane 3: Backup</text>
+      <text x="340" y="34" font-size="10" fill="#94a3b8">Emergency failsafe</text>
+      <text x="340" y="46" font-size="10" fill="#f43f5e">CMCDOS-2023 unique</text>
+    </g>
+
+    <text x="18" y="148" font-size="11" fill="#cbd5e1">• Soft Lock: Order creation holds batch slot for 10 minutes (prevents race collisions)</text>
+    <text x="18" y="166" font-size="11" fill="#cbd5e1">• Automatic TTL Purge: Background daemon purges expired SOFT reservations every 5m</text>
+    <text x="18" y="184" font-size="11" fill="#34d399">• Firm Lock Upgrade: When Clinical Supply approves, lock converts to permanent FIRM</text>
+    <text x="18" y="202" font-size="11" fill="#cbd5e1">• Cancel-and-Recreate: Reschedules atomically swap reservation slots within 1 transaction</text>
   </g>
 
   <!-- Footer Banner -->
-  <g transform="translate(60, 640)">
-    <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b">Engineered by Sai Yasaswini Majety | Senior Software Engineer - Dose Management Platform | Production Grade Architecture</text>
+  <g transform="translate(40, 915)">
+    <text x="0" y="14" font-size="11" fill="#64748b">Dose Management System (DMS) Platform • Architecture Blueprint • Production Release Standard • 21 CFR Part 11 Compliant</text>
   </g>
 </svg>

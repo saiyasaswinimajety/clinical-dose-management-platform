@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 920" width="100%" height="100%" style="background:#0d1117; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f293d"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="cfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f38020"/>
+      <stop offset="100%" stop-color="#faad3f"/>
+    </linearGradient>
+    <linearGradient id="cfBoxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a1b12"/>
+      <stop offset="100%" stop-color="#191310"/>
+    </linearGradient>
+    <linearGradient id="errorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <linearGradient id="awsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c2536"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="istioGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="k8sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2538"/>
+      <stop offset="100%" stop-color="#0f1422"/>
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="errorGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ef4444" flood-opacity="0.4"/>
+    </filter>
+    
+    <!-- Arrowhead Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Title Section -->
+  <text x="440" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#f3f4f6" letter-spacing="0.5">DMS Architecture &amp; Cloudflare Interception Flow</text>
+  <text x="440" y="66" text-anchor="middle" font-size="13" font-weight="400" fill="#9ca3af">How Edge Bot Management Breaks Single Page Application (SPA) Background Traffic</text>
+
+  <!-- 1. BROWSER / CLIENT LAYER -->
+  <g transform="translate(190, 95)" filter="url(#shadow)">
+    <rect width="500" height="75" rx="10" fill="url(#clientGrad)" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="15" y="15" width="45" height="45" rx="8" fill="#1e3a8a"/>
+    <text x="37" y="43" text-anchor="middle" font-size="22">💻</text>
+    
+    <text x="75" y="36" font-size="16" font-weight="700" fill="#ffffff">User Browser (React 18 SPA on Vite)</text>
+    <text x="75" y="55" font-size="12" fill="#93c5fd">• User clicks "Cancel Order" on orders.lilly.com</text>
+    <text x="75" y="70" font-size="12" fill="#94a3b8">• Background request: OPTIONS https://orders-backend.lilly.com/v1/...</text>
+  </g>
+
+  <!-- Arrow 1: Browser to Cloudflare -->
+  <line x1="440" y1="170" x2="440" y2="210" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text x="450" y="195" font-size="11" font-weight="600" fill="#60a5fa">1. Unauthenticated OPTIONS Preflight</text>
+
+  <!-- 2. CLOUDFLARE EDGE LAYER -->
+  <g transform="translate(140, 215)" filter="url(#shadow)">
+    <rect width="600" height="195" rx="12" fill="url(#cfBoxGrad)" stroke="#f38020" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="20" y="15" width="30" height="30" rx="6" fill="#f38020"/>
+    <text x="35" y="36" text-anchor="middle" font-size="18" fill="#fff">☁️</text>
+    <text x="60" y="32" font-size="17" font-weight="700" fill="#fba919">1. CLOUDFLARE EDGE (Enterprise Zone: *.lilly.com)</text>
+    <text x="60" y="48" font-size="12" fill="#d1d5db">Web Application Firewall (WAF) &amp; Bot Management / Turnstile</text>
+
+    <!-- Error Callout Box -->
+    <g transform="translate(20, 60)" filter="url(#errorGlow)">
+      <rect width="560" height="120" rx="8" fill="url(#errorGrad)" stroke="#ef4444" stroke-width="1.5"/>
+      <rect x="15" y="12" width="22" height="22" rx="4" fill="#dc2626"/>
+      <text x="26" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">❌</text>
+      <text x="45" y="28" font-size="14" font-weight="700" fill="#fecaca">BLOCKED HERE IN LAST 48 HOURS (Managed Challenge)</text>
+      
+      <text x="18" y="52" font-size="12" fill="#fca5a5">• Bot Engine flags corporate IP traffic volume / expired session as suspicious bot.</text>
+      <text x="18" y="70" font-size="12" fill="#fca5a5">• Returns: <tspan font-family="monospace" font-weight="bold" fill="#ffffff">HTTP/2 403 Forbidden</tspan> ("cf-mitigated: challenge") with HTML challenge.</text>
+      <text x="18" y="88" font-size="12" fill="#fef2f2" font-weight="600">• Critical Flaw: Response has <tspan fill="#f87171" text-decoration="underline">NO Access-Control-Allow-Origin header</tspan>.</text>
+      <text x="18" y="106" font-size="12" fill="#fee2e2">• Browser SPA aborts with <tspan font-weight="bold" fill="#ffffff">CORS Error</tspan> — Traffic NEVER reaches AWS or Kubernetes!</text>
+    </g>
+  </g>
+
+  <!-- Arrow 2: Cloudflare to AWS -->
+  <line x1="440" y1="410" x2="440" y2="460" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="305" y="425" width="270" height="22" rx="4" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+  <text x="440" y="440" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">✔ Once WAF Exemption Rule is Applied (Passes)</text>
+
+  <!-- 3. AWS LOAD BALANCER LAYER -->
+  <g transform="translate(190, 465)" filter="url(#shadow)">
+    <rect width="500" height="70" rx="10" fill="url(#awsGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="15" y="14" width="42" height="42" rx="8" fill="#78350f"/>
+    <text x="36" y="41" text-anchor="middle" font-size="20">⚖️</text>
+    <text x="70" y="34" font-size="15" font-weight="700" fill="#fef3c7">2. AWS INGRESS LAYER (Application Load Balancer)</text>
+    <text x="70" y="52" font-size="12" fill="#d1d5db">• Name: <tspan font-family="monospace" fill="#fde68a">lk3-*-cloud-flare-alb</tspan> (Ports 80/443, ACM TLS 1.3)</text>
+    <text x="70" y="68" font-size="12" fill="#9ca3af">• Forwards traffic to OpenShift NodePort (30552)</text>
+  </g>
+
+  <!-- Arrow 3: AWS to Istio -->
+  <line x1="440" y1="535" x2="440" y2="570" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 4. ISTIO SERVICE MESH LAYER -->
+  <g transform="translate(160, 575)" filter="url(#shadow)">
+    <rect width="560" height="110" rx="10" fill="url(#istioGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="15" y="15" width="40" height="40" rx="8" fill="#0369a1"/>
+    <text x="35" y="41" text-anchor="middle" font-size="20">🕸️</text>
+    
+    <text x="68" y="34" font-size="15" font-weight="700" fill="#e0f2fe">3. ISTIO SERVICE MESH (Kubed Ingress Gateway)</text>
+    <text x="68" y="53" font-size="12" fill="#bae6fd">• <tspan font-weight="bold">AuthorizationPolicy (Rule 1):</tspan> Explicitly permits OPTIONS without JWT</text>
+    <text x="68" y="70" font-size="12" fill="#bae6fd">• <tspan font-weight="bold">VirtualService (PR #26711):</tspan> corsPolicy allows wildcard headers (<tspan font-family="monospace">allowHeaders: ["*"]</tspan>)</text>
+    <text x="68" y="87" font-size="12" fill="#94a3b8">• Routes requests to respective project namespaces</text>
+  </g>
+
+  <!-- Split Arrows to Pods -->
+  <path d="M 320 685 L 320 725" fill="none" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 560 685 L 560 725" fill="none" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 5. KUBERNETES PODS LAYER -->
+  <!-- Frontend Pod -->
+  <g transform="translate(130, 730)" filter="url(#shadow)">
+    <rect width="300" height="120" rx="10" fill="url(#k8sGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="20" y="30" font-size="14" font-weight="700" fill="#a7f3d0">📦 Frontend Pod (SPA)</text>
+    <text x="20" y="48" font-size="11" font-family="monospace" fill="#6ee7b7">dose-management-system-frontend</text>
+    <line x1="20" y1="56" x2="280" y2="56" stroke="#374151" stroke-width="1"/>
+    <text x="20" y="74" font-size="12" fill="#d1d5db">• Nginx static file server</text>
+    <text x="20" y="92" font-size="12" fill="#d1d5db">• Serves <tspan font-family="monospace">index.html</tspan> &amp; <tspan font-family="monospace">/assets/*.js</tspan></text>
+    <text x="20" y="110" font-size="12" fill="#9ca3af">• Status: <tspan fill="#34d399" font-weight="bold">Healthy</tspan></text>
+  </g>
+
+  <!-- Backend Pod -->
+  <g transform="translate(450, 730)" filter="url(#shadow)">
+    <rect width="300" height="120" rx="10" fill="url(#k8sGrad)" stroke="#818cf8" stroke-width="1.5"/>
+    <text x="20" y="30" font-size="14" font-weight="700" fill="#c7d2fe">☕ Backend Pod (API Engine)</text>
+    <text x="20" y="48" font-size="11" font-family="monospace" fill="#a5b4fc">dose-management-system-backend</text>
+    <line x1="20" y1="56" x2="280" y2="56" stroke="#374151" stroke-width="1"/>
+    <text x="20" y="74" font-size="12" fill="#d1d5db">• Spring Boot 3.2 (Java 21)</text>
+    <text x="20" y="92" font-size="12" fill="#d1d5db">• ReasonController: <tspan font-family="monospace">/v1/masterdata/...</tspan></text>
+    <text x="20" y="110" font-size="12" fill="#9ca3af">• DB: AWS RDS Postgres 16 | Status: <tspan fill="#34d399" font-weight="bold">Healthy</tspan></text>
+  </g>
+
+  <!-- Footer Info -->
+  <text x="440" y="890" text-anchor="middle" font-size="12" font-weight="500" fill="#6b7280">Dose Management System • Eli Lilly and Company • Cloudflare WAF Incident INC15589652</text>
+</svg>

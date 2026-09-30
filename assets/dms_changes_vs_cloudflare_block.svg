@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" width="100%" height="100%" style="background:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="cfAlertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b1111"/>
+      <stop offset="100%" stop-color="#1f0909"/>
+    </linearGradient>
+    <linearGradient id="changeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="proofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="redGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ef4444" flood-opacity="0.4"/>
+    </filter>
+    <filter id="greenGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#10b981" flood-opacity="0.3"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#f8fafc">Architecture &amp; Change Flow: Why Our Recent Fixes Did Not Hurt</text>
+  <text x="480" y="62" text-anchor="middle" font-size="13" fill="#94a3b8">Visualizing the separation between Upstream Cloudflare Edge and Downstream ServiceMesh</text>
+
+  <!-- ================= LEFT COLUMN: THE FLOW ================= -->
+
+  <!-- 1. USER BROWSER -->
+  <g transform="translate(40, 85)" filter="url(#boxShadow)">
+    <rect width="420" height="65" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="20" y="28" font-size="14" font-weight="700" fill="#ffffff">💻 User Browser (orders.lilly.com)</text>
+    <text x="20" y="48" font-size="12" fill="#93c5fd">• Sends background API call with custom headers (Userid)</text>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="250" y1="150" x2="250" y2="185" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 2. CLOUDFLARE EDGE (UPSTREAM) -->
+  <g transform="translate(40, 190)" filter="url(#boxShadow)">
+    <rect width="420" height="150" rx="10" fill="url(#cfAlertGrad)" stroke="#ef4444" stroke-width="2" filter="url(#redGlow)"/>
+    <rect x="15" y="12" width="22" height="22" rx="4" fill="#dc2626"/>
+    <text x="26" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">❌</text>
+    <text x="45" y="28" font-size="14" font-weight="700" fill="#fca5a5">UPSTREAM: Cloudflare Edge (*.lilly.com)</text>
+    <text x="20" y="52" font-size="12" font-weight="700" fill="#ffffff">🛑 WHERE THE REQUEST DIES:</text>
+    <text x="20" y="72" font-size="12" fill="#fecdd3">• Central Infosec tightened Bot Management on *.lilly.com.</text>
+    <text x="20" y="90" font-size="12" fill="#fecdd3">• Cloudflare returns <tspan font-weight="bold" fill="#ffffff">403 Forbidden ("cf-mitigated: challenge")</tspan>.</text>
+    <text x="20" y="108" font-size="12" fill="#fecdd3">• 403 response has NO CORS header &#8594; Browser aborts!</text>
+    <text x="20" y="130" font-size="12" font-weight="700" fill="#f87171">⛔ TRAFFIC NEVER REACHED AWS OR KUBERNETES!</text>
+  </g>
+
+  <!-- Blocked X Arrow -->
+  <line x1="250" y1="340" x2="250" y2="390" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5 5" marker-end="url(#arrowRed)"/>
+  <rect x="175" y="352" width="150" height="20" rx="4" fill="#450a0a"/>
+  <text x="250" y="366" text-anchor="middle" font-size="10" font-weight="700" fill="#fca5a5">TRAFFIC STOPPED HERE</text>
+
+  <!-- 3. DOWNSTREAM: AWS ALB & KUBED ISTIO -->
+  <g transform="translate(40, 395)" filter="url(#boxShadow)">
+    <rect width="420" height="175" rx="10" fill="url(#changeGrad)" stroke="#10b981" stroke-width="2" filter="url(#greenGlow)"/>
+    <rect x="15" y="12" width="22" height="22" rx="4" fill="#059669"/>
+    <text x="26" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">✔</text>
+    <text x="45" y="28" font-size="14" font-weight="700" fill="#a7f3d0">DOWNSTREAM: Where Our Changes Live (Kubed)</text>
+    
+    <text x="20" y="52" font-size="12" font-weight="700" fill="#6ee7b7">🛡️ What We Changed (PR #26710 &amp; PR #26711):</text>
+    <text x="20" y="72" font-size="12" fill="#d1fae5">• <tspan font-weight="bold">Wildcard Headers:</tspan> Changed allowHeaders to <tspan font-family="monospace" fill="#ffffff">["*"]</tspan>.</text>
+    <text x="20" y="90" font-size="12" fill="#d1fae5">• <tspan font-weight="bold">OPTIONS Bypass (Rule 1):</tspan> Istio allows preflight without JWT.</text>
+    <text x="20" y="108" font-size="12" fill="#d1fae5">• <tspan font-weight="bold">Aligned CORS:</tspan> Added Access-Control-Allow-Origin.</text>
+    
+    <line x1="20" y1="120" x2="400" y2="120" stroke="#047857" stroke-width="1"/>
+    <text x="20" y="138" font-size="11" font-weight="700" fill="#34d399">100% Additive &amp; Relaxed:</text>
+    <text x="20" y="156" font-size="11" fill="#a7f3d0">We loosened restrictions so our cluster welcomes all requests!</text>
+  </g>
+
+  <!-- Arrow down to Pods -->
+  <line x1="250" y1="570" x2="250" y2="605" stroke="#10b981" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 4. APP PODS -->
+  <g transform="translate(40, 610)" filter="url(#boxShadow)">
+    <rect width="420" height="75" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="20" y="26" font-size="13" font-weight="700" fill="#c7d2fe">🏥 App Pods &amp; Database (Backend &amp; Frontend)</text>
+    <text x="20" y="46" font-size="12" fill="#e0e7ff">• SecurityConfig.java: .requestMatchers(OPTIONS).permitAll()</text>
+    <text x="20" y="64" font-size="12" fill="#a5b4fc">• Pods, DB, and Temporal are 100% healthy and waiting for traffic.</text>
+  </g>
+
+  <!-- ================= RIGHT COLUMN: 3 BULLETPROOF PROOFS ================= -->
+  <g transform="translate(490, 85)" filter="url(#boxShadow)">
+    <rect width="430" height="600" rx="12" fill="url(#proofGrad)" stroke="#475569" stroke-width="1.5"/>
+    
+    <!-- Title -->
+    <text x="25" y="35" font-size="17" font-weight="700" fill="#f8fafc">3 Proofs Our Fixes Did NOT Break DMS</text>
+    <text x="25" y="55" font-size="12" fill="#94a3b8">Why the incident is 100% an Edge (Cloudflare) issue</text>
+    <line x1="25" y1="70" x2="405" y2="70" stroke="#334155" stroke-width="1"/>
+
+    <!-- Proof 1 -->
+    <rect x="25" y="85" width="28" height="28" rx="6" fill="#1e3a8a"/>
+    <text x="39" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa">1</text>
+    <text x="65" y="103" font-size="14" font-weight="700" fill="#ffffff">The 403 is Issued Upstream at Cloudflare</text>
+    <text x="25" y="132" font-size="12" fill="#cbd5e1">• The failing response headers explicitly contain:</text>
+    <text x="35" y="150" font-size="11" font-family="monospace" fill="#fde047">server: cloudflare</text>
+    <text x="35" y="166" font-size="11" font-family="monospace" fill="#fde047">cf-mitigated: challenge</text>
+    <text x="35" y="182" font-size="11" font-family="monospace" fill="#fde047">cf-ray: a3cb93b90821f0c0-DFW</text>
+    <text x="25" y="204" font-size="12" fill="#cbd5e1">• Cloudflare drops the connection <tspan font-weight="bold" fill="#ffffff">before</tspan> traffic enters AWS.</text>
+    <text x="25" y="222" font-size="12" fill="#cbd5e1">• Our Istio ServiceMesh never received or evaluated it.</text>
+
+    <line x1="25" y1="242" x2="405" y2="242" stroke="#334155" stroke-width="1"/>
+
+    <!-- Proof 2 -->
+    <rect x="25" y="257" width="28" height="28" rx="6" fill="#065f46"/>
+    <text x="39" y="277" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399">2</text>
+    <text x="65" y="275" font-size="14" font-weight="700" fill="#ffffff">Our Changes Only Relaxed Permissions</text>
+    <text x="25" y="304" font-size="12" fill="#cbd5e1">• We did not restrict or tighten any security rules.</text>
+    <text x="25" y="322" font-size="12" fill="#cbd5e1">• In PR #26711, we replaced strict header lists with:</text>
+    <text x="35" y="340" font-size="11" font-family="monospace" fill="#6ee7b7">allowHeaders: ["*"]</text>
+    <text x="25" y="362" font-size="12" fill="#cbd5e1">• This made our cluster <tspan font-weight="bold" fill="#ffffff">more permissive</tspan>, exactly matching</text>
+    <text x="25" y="380" font-size="12" fill="#cbd5e1">  other healthy Lilly Kubed platforms.</text>
+
+    <line x1="25" y1="400" x2="405" y2="400" stroke="#334155" stroke-width="1"/>
+
+    <!-- Proof 3 -->
+    <rect x="25" y="415" width="28" height="28" rx="6" fill="#701a75"/>
+    <text x="39" y="435" text-anchor="middle" font-size="14" font-weight="bold" fill="#f472b6">3</text>
+    <text x="65" y="433" font-size="14" font-weight="700" fill="#ffffff">Static JS Files Broke Without Any Changes</text>
+    <text x="25" y="462" font-size="12" fill="#cbd5e1">• Cloudflare also blocked static frontend JavaScript:</text>
+    <text x="35" y="480" font-size="11" font-family="monospace" fill="#f472b6">/assets/LoginPage-BblD2rXC.js (403)</text>
+    <text x="25" y="502" font-size="12" fill="#cbd5e1">• Static JS files don't use CORS, APIs, or our new rules.</text>
+    <text x="25" y="520" font-size="12" fill="#cbd5e1">• Stage &amp; Prod were running untouched August release-1.2 code</text>
+    <text x="25" y="538" font-size="12" fill="#cbd5e1">  and still experienced the exact same breakage.</text>
+
+    <!-- Bottom Summary Banner -->
+    <rect x="20" y="555" width="390" height="32" rx="6" fill="#0f172a" stroke="#059669" stroke-width="1"/>
+    <text x="215" y="575" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399">✔ VERDICT: Our fixes are ready; Cloudflare edge rule needed.</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="480" y="730" text-anchor="middle" font-size="12" fill="#64748b">Dose Management System (DMS) • Incident INC15589652 / INC15582645 • Eli Lilly &amp; Co.</text>
+</svg>

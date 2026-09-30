@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="100%" height="100%" style="background:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Card Gradients -->
+    <linearGradient id="cardGradDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141c2e" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="amberGlow2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="blueGlow2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadowDark" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="8" height="42" rx="4" fill="#fbbf24"/>
+    <text x="22" y="24" font-size="22" font-weight="700" fill="#f8fafc">Nuclear Physics Decay &amp; Dynamic Calibration Engine</text>
+    <text x="22" y="44" font-size="12" font-weight="500" fill="#94a3b8">F-18 CONTINUOUS EXPONENTIAL DECAY, SUQ QUARANTINE GATES &amp; 10-HOUR SHELF-LIFE WINDOW</text>
+
+    <rect x="750" y="8" width="130" height="28" rx="14" fill="#78350f" fill-opacity="0.4" stroke="#fbbf24" stroke-width="1"/>
+    <circle cx="765" cy="22" r="4" fill="#fbbf24"/>
+    <text x="778" y="26" font-size="11" font-weight="600" fill="#fde68a">t½ = 109.77 min</text>
+  </g>
+
+  <!-- Left Column: Nuclear Mathematics -->
+  <g transform="translate(60, 115)" filter="url(#shadowDark)">
+    <rect width="420" height="490" rx="14" fill="url(#cardGradDark)" stroke="url(#amberGlow2)" stroke-width="1.5"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#78350f"/>
+    <text x="26" y="39" font-size="18">☢️</text>
+    <text x="64" y="32" font-size="15" font-weight="700" fill="#fef3c7">Exponential Decay Formulation</text>
+    <text x="64" y="48" font-size="11" fill="#f59e0b">Exact Nuclear Differential Equation: dA/dt = -λA</text>
+    <line x1="18" y1="62" x2="402" y2="62" stroke="#334155" stroke-width="1"/>
+
+    <!-- Math Block 1: Decay Constant -->
+    <g transform="translate(18, 75)">
+      <rect width="384" height="75" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#fbbf24">1. Radioisotope Decay Constant (λ)</text>
+      <text x="14" y="44" font-family="monospace" font-size="12" fill="#38bdf8">λ = ln(2) / t_half = 0.693147 / 109.77 min</text>
+      <text x="14" y="62" font-family="monospace" font-size="11" fill="#34d399">λ ≈ 0.00631454 min⁻¹ (Double-precision exact)</text>
+    </g>
+
+    <!-- Math Block 2: Synthesizer Sizing -->
+    <g transform="translate(18, 165)">
+      <rect width="384" height="95" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#fbbf24">2. Cyclotron End-of-Synthesis (EOS) Sizing</text>
+      <text x="14" y="44" font-family="monospace" font-size="12" fill="#f8fafc">A_EOS = A_calib · exp( λ · (t_calib - t_EOS) )</text>
+      <text x="14" y="66" font-family="sans-serif" font-size="11" fill="#94a3b8">If target dose = 10.0 mCi at t = 220 min (~2 half-lives):</text>
+      <text x="14" y="84" font-family="monospace" font-size="11" fill="#fbbf24">Required A_EOS = 10.0 · exp(0.00631454 · 220) ≈ 40.08 mCi</text>
+    </g>
+
+    <!-- Math Block 3: Net Administered Activity -->
+    <g transform="translate(18, 275)">
+      <rect width="384" height="90" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#fbbf24">3. Post-Delivery Net Administration</text>
+      <text x="14" y="44" font-family="monospace" font-size="12" fill="#f8fafc">A_net = [ A_assay · exp(-λ·Δt) ] - A_residual</text>
+      <text x="14" y="66" font-family="sans-serif" font-size="11" fill="#94a3b8">Calculates actual dose injected into patient</text>
+      <text x="14" y="82" font-family="sans-serif" font-size="11" fill="#34d399">Logs 21 CFR Part 11 Protocol Deviation if &gt; ±10%</text>
+    </g>
+
+    <!-- Mathematical Invariant Note -->
+    <g transform="translate(18, 380)">
+      <rect width="384" height="85" rx="6" fill="#1e293b"/>
+      <text x="14" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Zero-Inventory Physical Invariant</text>
+      <text x="14" y="42" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Radiopharmaceuticals cannot be stockpiled or warehoused.</text>
+      <text x="14" y="58" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Every dose order triggers on-demand cyclotron scheduling.</text>
+      <text x="14" y="74" font-family="sans-serif" font-size="10" fill="#cbd5e1">• 100% loss of activity within 18 hours of production.</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Calibration Window Flowchart -->
+  <g transform="translate(520, 115)" filter="url(#shadowDark)">
+    <rect width="420" height="490" rx="14" fill="url(#cardGradDark)" stroke="url(#blueGlow2)" stroke-width="1.5"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#0369a1"/>
+    <text x="26" y="39" font-size="18">⏱️</text>
+    <text x="64" y="32" font-size="15" font-weight="700" fill="#f1f5f9">Available Calibration Window</text>
+    <text x="64" y="48" font-size="11" fill="#38bdf8">Algorithm: calculateAvailableCalibrationWindow()</text>
+    <line x1="18" y1="62" x2="402" y2="62" stroke="#334155" stroke-width="1"/>
+
+    <!-- Step 1: Input Parameters -->
+    <g transform="translate(18, 75)">
+      <rect width="384" height="60" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Inputs:</text>
+      <text x="14" y="38" font-family="monospace" font-size="10" fill="#cbd5e1">MfgReleaseTime, TransitDuration, BufferTime, SUQ_Flag</text>
+      <text x="14" y="52" font-family="monospace" font-size="10" fill="#64748b">Batch Max Shelf Life = 10.0 Hours</text>
+    </g>
+
+    <!-- Arrow down -->
+    <path d="M 210 135 L 210 155" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#arrowB)"/>
+
+    <!-- Step 2: Earliest Calculation -->
+    <g transform="translate(18, 155)">
+      <rect width="384" height="70" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Earliest Calibration Boundary</text>
+      <text x="14" y="38" font-family="monospace" font-size="11" fill="#f8fafc">Earliest = ReleaseTime + Transit + Buffer</text>
+      <text x="14" y="56" font-family="sans-serif" font-size="10" fill="#fbbf24">If SUQ == true: Earliest += QuarantineDuration</text>
+    </g>
+
+    <!-- Arrow down -->
+    <path d="M 210 225 L 210 245" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#arrowB)"/>
+
+    <!-- Step 3: Latest Calculation -->
+    <g transform="translate(18, 245)">
+      <rect width="384" height="70" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="20" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Latest Calibration Boundary</text>
+      <text x="14" y="38" font-family="monospace" font-size="11" fill="#f8fafc">Latest = EOS + MaxShelfLife(10h) - Transit</text>
+      <text x="14" y="56" font-family="sans-serif" font-size="10" fill="#94a3b8">Beyond 10h, dose activity drops below USP &lt;823&gt; efficacy</text>
+    </g>
+
+    <!-- Arrow down -->
+    <path d="M 210 315 L 210 335" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#arrowB)"/>
+
+    <!-- Step 4: Validation Gate -->
+    <g transform="translate(18, 335)">
+      <rect width="384" height="130" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="14" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#34d399">Window Validation Check</text>
+      <text x="14" y="44" font-family="monospace" font-size="11" fill="#f8fafc">Is Earliest &lt;= RequestedDoseTime &lt;= Latest?</text>
+      
+      <rect x="14" y="60" width="170" height="55" rx="4" fill="#064e3b" stroke="#10b981"/>
+      <text x="24" y="80" font-family="sans-serif" font-size="11" font-weight="700" fill="#a7f3d0">✓ VALID RANGE</text>
+      <text x="24" y="98" font-family="sans-serif" font-size="9" fill="#d1fae5">Reserve Soft Capacity (10m TTL)</text>
+
+      <rect x="200" y="60" width="170" height="55" rx="4" fill="#450a0a" stroke="#ef4444"/>
+      <text x="210" y="80" font-family="sans-serif" font-size="11" font-weight="700" fill="#fca5a5">✗ OUT OF RANGE</text>
+      <text x="210" y="98" font-family="sans-serif" font-size="9" fill="#fee2e2">HTTP 400: Batch Incapable</text>
+    </g>
+  </g>
+</svg>

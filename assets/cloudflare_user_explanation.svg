@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 720" width="100%" height="100%" style="background:#0d1117; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="guardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#2a0f02"/>
+    </linearGradient>
+    <linearGradient id="blockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#881337"/>
+      <stop offset="100%" stop-color="#4c0519"/>
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="alertGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#f43f5e" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Arrows -->
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fb7185"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <!-- Title Section -->
+  <text x="440" y="45" text-anchor="middle" font-size="24" font-weight="700" fill="#f8fafc">What Happened to Dose Management System (DMS)?</text>
+  <text x="440" y="72" text-anchor="middle" font-size="14" fill="#94a3b8">A Simple Explanation: Why our application is healthy, but users are seeing errors</text>
+
+  <!-- 1. USER LAYER -->
+  <g transform="translate(90, 105)" filter="url(#cardShadow)">
+    <rect width="700" height="95" rx="12" fill="url(#userGrad)" stroke="#38bdf8" stroke-width="2"/>
+    <text x="30" y="55" font-size="34">👤</text>
+    <text x="80" y="42" font-size="17" font-weight="700" fill="#ffffff">Step 1: You Use the Portal (orders.lilly.com)</text>
+    <text x="80" y="65" font-size="13" fill="#cbd5e1">• You click a button (e.g., "Cancel Order", "Log In", or refresh the page).</text>
+    <text x="80" y="83" font-size="13" fill="#94a3b8">• Your browser automatically sends a background request to fetch your order data.</text>
+  </g>
+
+  <!-- Flow Arrow Down -->
+  <line x1="440" y1="200" x2="440" y2="245" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- 2. CLOUDFLARE GATE LAYER -->
+  <g transform="translate(90, 250)" filter="url(#cardShadow)">
+    <rect width="700" height="230" rx="12" fill="url(#guardGrad)" stroke="#f97316" stroke-width="2"/>
+    
+    <text x="30" y="48" font-size="32">🛡️</text>
+    <text x="80" y="38" font-size="17" font-weight="700" fill="#fed7aa">Step 2: The Enterprise Security Guard (Cloudflare)</text>
+    <text x="80" y="58" font-size="13" fill="#fdba74">A central security layer that protects all Lilly websites (*.lilly.com) from cyberattacks.</text>
+
+    <!-- The Blocker Box -->
+    <g transform="translate(25, 75)" filter="url(#alertGlow)">
+      <rect width="650" height="135" rx="10" fill="url(#blockGrad)" stroke="#f43f5e" stroke-width="1.5"/>
+      <text x="20" y="32" font-size="20">🚫</text>
+      <text x="50" y="30" font-size="15" font-weight="700" fill="#ffe4e6">THE BREAKDOWN: Mistaken Identity (False Alarm)</text>
+      
+      <text x="20" y="60" font-size="13" fill="#fecdd3">1. Recent security updates made Cloudflare much stricter against automated bot traffic.</text>
+      <text x="20" y="80" font-size="13" fill="#fecdd3">2. When you refresh rapidly or return after being idle, Cloudflare asks: <tspan fill="#ffffff" font-weight="bold">"Are you a human?"</tspan></text>
+      <text x="20" y="100" font-size="13" fill="#fecdd3">3. Normal websites show a checkbox, but modern web apps (like DMS) work in the background.</text>
+      <text x="20" y="120" font-size="13" font-weight="700" fill="#ffffff">👉 Result: Cloudflare blocks the request right at the front door before it ever reaches our servers!</text>
+    </g>
+  </g>
+
+  <!-- Blocked Indicator -->
+  <line x1="440" y1="480" x2="440" y2="525" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <rect x="360" y="492" width="160" height="22" rx="4" fill="#881337"/>
+  <text x="440" y="507" text-anchor="middle" font-size="11" font-weight="700" fill="#ffe4e6">❌ REQUEST BLOCKED HERE</text>
+
+  <!-- 3. OUR BACKEND LAYER -->
+  <g transform="translate(90, 530)" filter="url(#cardShadow)">
+    <rect width="700" height="110" rx="12" fill="url(#appGrad)" stroke="#10b981" stroke-width="2"/>
+    <text x="30" y="58" font-size="34">🏥</text>
+    <text x="80" y="38" font-size="17" font-weight="700" fill="#a7f3d0">Step 3: Dose Management System Servers (Our App &amp; Database)</text>
+    <text x="80" y="60" font-size="13" fill="#d1fae5">• Status: <tspan fill="#34d399" font-weight="bold">100% Healthy &amp; Operational</tspan> (No code bugs, no database downtime).</text>
+    <text x="80" y="80" font-size="13" fill="#d1fae5">• Why it failed: Our servers never received your request because Cloudflare stopped it in Step 2.</text>
+    <text x="80" y="98" font-size="13" fill="#86efac">• <tspan font-weight="bold">Solution in Progress:</tspan> CyberSecurity is adding an exemption to let DMS traffic pass freely.</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="440" y="685" text-anchor="middle" font-size="12" fill="#64748b">Incident Ticket: INC15589652 • Dose Management System (DMS) Platform Team</text>
+</svg>

@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%" style="background:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162032" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="crimsonGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="8" height="42" rx="4" fill="#34d399"/>
+    <text x="22" y="24" font-size="22" font-weight="700" fill="#f8fafc" letter-spacing="-0.3">Dual-Layer GxP Auditing &amp; Compliance Pipeline</text>
+    <text x="22" y="44" font-size="12" font-weight="500" fill="#94a3b8">FDA 21 CFR PART 11 IMMUTABLE AUDIT TRAIL, DATABASE TRIGGERS &amp; CDC DATA LAKE</text>
+    
+    <rect x="730" y="8" width="150" height="28" rx="14" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+    <circle cx="745" cy="22" r="4" fill="#34d399"/>
+    <text x="758" y="26" font-size="11" font-weight="600" fill="#a7f3d0">21 CFR PART 11 GxP</text>
+  </g>
+
+  <!-- Flow Diagrams / Architecture Blocks -->
+  
+  <!-- Step 1: User Client Action -->
+  <g transform="translate(60, 115)" filter="url(#dropShadow)">
+    <rect width="250" height="150" rx="12" fill="url(#cardBg)" stroke="url(#blueGlow)" stroke-width="1.5"/>
+    <rect x="16" y="16" width="34" height="34" rx="8" fill="#1e3a8a"/>
+    <text x="25" y="39" font-size="18">💻</text>
+    <text x="60" y="34" font-size="15" font-weight="700" fill="#f1f5f9">Client Tier</text>
+    <text x="60" y="49" font-size="11" fill="#38bdf8">React 18 + Vite SPA</text>
+    <line x1="16" y1="62" x2="234" y2="62" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="84" font-size="11" fill="#cbd5e1">• GxP State Mutation Event</text>
+    <text x="16" y="104" font-size="11" fill="#cbd5e1">• e-Signature Authentication</text>
+    <text x="16" y="124" font-size="11" fill="#cbd5e1">• Reason for Change Prompt</text>
+    <rect x="16" y="132" width="218" height="18" rx="4" fill="#0f172a"/>
+    <text x="24" y="145" font-family="monospace" font-size="9" fill="#38bdf8">POST /api/v1/orders/{id}/qa-release</text>
+  </g>
+
+  <!-- Arrow 1 to Spring Boot Core -->
+  <path d="M 310 190 L 375 190" stroke="#38bdf8" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="318" y="180" font-size="10" font-family="monospace" fill="#38bdf8">JWT + Payload</text>
+
+  <!-- Step 2: Spring Boot Application Layer -->
+  <g transform="translate(375, 115)" filter="url(#dropShadow)">
+    <rect width="260" height="150" rx="12" fill="url(#cardBg)" stroke="url(#blueGlow)" stroke-width="1.5"/>
+    <rect x="16" y="16" width="34" height="34" rx="8" fill="#1e3a8a"/>
+    <text x="25" y="39" font-size="18">⚙️</text>
+    <text x="60" y="34" font-size="15" font-weight="700" fill="#f1f5f9">Layer 1: App Audit</text>
+    <text x="60" y="49" font-size="11" fill="#60a5fa">Spring Boot 3.2 Service</text>
+    <line x1="16" y1="62" x2="244" y2="62" stroke="#334155" stroke-width="1"/>
+    <text x="16" y="82" font-size="11" fill="#cbd5e1">AuditLogger.logBusinessEvent()</text>
+    <text x="16" y="100" font-family="monospace" font-size="10" fill="#94a3b8">• OrderId, UserId, ClientIp</text>
+    <text x="16" y="116" font-family="monospace" font-size="10" fill="#94a3b8">• ReasonForChange, Signature</text>
+    <rect x="16" y="124" width="228" height="18" rx="4" fill="#0f172a"/>
+    <text x="22" y="137" font-family="monospace" font-size="9" fill="#34d399">Emits JSON to Loki / Grafana</text>
+  </g>
+
+  <!-- Arrow to Loki (Upper branch) -->
+  <path d="M 635 150 L 710 150" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Loki Event Storage -->
+  <g transform="translate(710, 115)" filter="url(#dropShadow)">
+    <rect width="230" height="70" rx="10" fill="url(#cardBg)" stroke="url(#purpleGlow)" stroke-width="1.5"/>
+    <text x="16" y="30" font-size="13" font-weight="700" fill="#f3e8ff">Grafana Loki Cluster</text>
+    <text x="16" y="48" font-size="11" fill="#94a3b8">Real-time structured business events</text>
+    <text x="16" y="62" font-family="monospace" font-size="9" fill="#c084fc">Searchable by traceId &amp; userId</text>
+  </g>
+
+  <!-- Arrow down to Database Trigger Layer -->
+  <path d="M 505 265 L 505 320" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrowEmerald)"/>
+  <text x="515" y="295" font-size="10" font-family="monospace" fill="#34d399">SQL INSERT / UPDATE</text>
+
+  <!-- Step 3: Layer 2 Database Trigger Layer -->
+  <g transform="translate(180, 320)" filter="url(#dropShadow)">
+    <rect width="640" height="165" rx="14" fill="url(#cardBg)" stroke="url(#emeraldGlow)" stroke-width="2"/>
+    <rect x="20" y="16" width="36" height="36" rx="8" fill="#064e3b"/>
+    <text x="28" y="41" font-size="20">🐘</text>
+    <text x="68" y="34" font-size="16" font-weight="700" fill="#f8fafc">Layer 2: Database Trigger Layer (PostgreSQL 16)</text>
+    <text x="68" y="50" font-size="11" fill="#34d399">Trigger log_entity_changes() on partners, products, protocols, dose_orders</text>
+    <line x1="20" y1="64" x2="620" y2="64" stroke="#334155" stroke-width="1"/>
+
+    <g transform="translate(20, 78)">
+      <rect width="280" height="72" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="12" y="20" font-family="monospace" font-size="10" font-weight="700" fill="#38bdf8">1. DB Trigger row_to_json()</text>
+      <text x="12" y="36" font-family="monospace" font-size="9" fill="#94a3b8">old_value = row_to_json(OLD)</text>
+      <text x="12" y="50" font-family="monospace" font-size="9" fill="#94a3b8">new_value = row_to_json(NEW)</text>
+      <text x="12" y="64" font-family="monospace" font-size="9" fill="#34d399">Direct SQL bypasses cannot evade log</text>
+    </g>
+
+    <g transform="translate(320, 78)">
+      <rect width="300" height="72" rx="6" fill="#0f172a" stroke="#1e293b"/>
+      <text x="12" y="20" font-family="monospace" font-size="10" font-weight="700" fill="#fbbf24">2. public.audit_logs Schema</text>
+      <text x="12" y="36" font-family="monospace" font-size="9" fill="#94a3b8">id, entity_type, entity_id, action</text>
+      <text x="12" y="50" font-family="monospace" font-size="9" fill="#94a3b8">performed_by, performed_at, client_ip</text>
+      <text x="12" y="64" font-family="monospace" font-size="9" fill="#fbbf24">previous_hash, record_hash (SHA-256)</text>
+    </g>
+  </g>
+
+  <!-- Arrow down to CDC Lake Sync -->
+  <path d="M 500 485 L 500 535" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#arrowAmber)"/>
+  <text x="510" y="515" font-size="10" font-family="monospace" fill="#fbbf24">CdcSyncScheduler (every 60s)</text>
+
+  <!-- Step 4: Layer 3 Long-Term Immutable S3 Lake -->
+  <g transform="translate(180, 535)" filter="url(#dropShadow)">
+    <rect width="640" height="95" rx="12" fill="url(#cardBg)" stroke="url(#amberGlow)" stroke-width="1.5"/>
+    <rect x="18" y="16" width="34" height="34" rx="8" fill="#78350f"/>
+    <text x="25" y="40" font-size="18">🗄️</text>
+    <text x="64" y="32" font-size="14" font-weight="700" fill="#fef3c7">AWS S3 Compliance Data Lake (Long-Term GxP Archive)</text>
+    <text x="64" y="48" font-size="11" fill="#fbbf24">Immutable Bucket with Object Lock (WORM: Write Once, Read Many)</text>
+    <line x1="18" y1="60" x2="622" y2="60" stroke="#334155" stroke-width="1"/>
+    <text x="18" y="78" font-family="monospace" font-size="10" fill="#cbd5e1">s3://lilly-dms-cdc-audit/year=2026/month=09/batch_incremental_*.parquet.gz</text>
+  </g>
+
+  <!-- Bottom Verification Guarantee -->
+  <g transform="translate(60, 645)">
+    <text x="0" y="16" font-family="monospace" font-size="11" fill="#64748b">Verified: Application Business Events + PostgreSQL row_to_json Triggers + Periodic S3 WORM Streaming</text>
+  </g>
+</svg>
