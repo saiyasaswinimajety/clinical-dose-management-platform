@@ -5,6 +5,9 @@
 **Distributed Radiopharmaceutical Dosing, Precision Nuclear Decay Compensation & Temporal Workflow Engine**
 
 [![CI Pipeline](https://github.com/saiyasaswinimajety/clinical-dose-management-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/saiyasaswinimajety/clinical-dose-management-platform/actions)
+[![React 18](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Java 21 LTS](https://img.shields.io/badge/Java-21%20LTS-ED8B00?logo=openjdk&logoColor=white)](https://openjdk.org/projects/jdk/21/)
 [![Spring Boot 3.2](https://img.shields.io/badge/Spring%20Boot-3.2.5-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Temporal.io](https://img.shields.io/badge/Temporal-1.24.0-000000?logo=temporal&logoColor=white)](https://temporal.io/)
@@ -26,6 +29,64 @@ Because radiopharmaceuticals decay continuously from the moment cyclotron bombar
 - **Continuous Decay Sizing**: Manufacturing activity at End of Synthesis ($t_{\text{EOS}}$) must be dynamically oversized so that after packaging, air transit, and ground logistics, the remaining activity matches the precise patient prescription at calibration time ($t_{\text{calib}}$).
 - **FDA 21 CFR Part 11 & GxP Compliance**: Every data mutation, electronic signature, and order status transition must be cryptographically chained, tamper-evident, and auditable across both the application and database layers.
 - **Cancel-and-Recreate Immutability**: In-place mutation of approved clinical orders is strictly prohibited. Parameter revisions trigger an atomic cancellation and new order creation with forward-linked operational indicators.
+
+---
+
+## 💻 Regulated Clinical Web UI (React 18 & TypeScript)
+
+The front-end is engineered as a responsive, high-reliability single-page application built with **React 18**, **TypeScript**, and **Vite** under `frontend/`. It models the operational workflows of **Eli Lilly's Avid Radiopharmaceuticals Dose Management System (DMS)**, separating user interactions into role-tailored personas (*Hospital Clinical Coordinator*, *Cyclotron Radiopharmacist*, and *QA Release Auditor*).
+
+### 1. Clinical Dose Order Grid & Lifecycle Status
+A real-time operational dashboard visualizing multi-site clinical orders, isotope radio-synthesis progress, batch allocation, and Radioactive Material (RAM) permit verification badges.
+
+<div align="center">
+  <img src="assets/ui-dose-orders-grid.png" alt="Clinical Dose Order Grid (React 18 / TypeScript)" width="100%" />
+</div>
+
+- **Dynamic Lifecycle Badges**: Visualizes active states (`ORDER_SUBMITTED`, `RADIO_SYNTHESIS`, `DECAY_COMPENSATED`, `QA_RELEASED`, `DISPATCHED`).
+- **RAM Permit Gate**: Instant cross-reference against hospital possession limits ($150\text{ mCi}$ - $300\text{ mCi}$) with visual compliance indicators.
+- **Client-Side Filtering**: High-speed filtering by order ID, protocol, clinical imaging center, or de-identified patient hash.
+
+---
+
+### 2. Nuclear Physics: Real-Time Exponential Decay & Calibration Engine
+An interactive, high-precision SVG decay calculation engine that visualizes continuous radioactive degradation:
+$$A(t) = A_0 \cdot e^{-\lambda t}$$
+
+<div align="center">
+  <img src="assets/ui-decay-calibration-engine.png" alt="Nuclear Decay Math and Calibration Engine" width="100%" />
+</div>
+
+- **Interactive Curve Modeling**: Real-time vector plotting of radioactive decay curves across custom transit windows ($0$ to $300\text{ minutes}$).
+- **Automated Synthesis Sizing**: Calculates required cyclotron overshoot at End of Synthesis ($t_{\text{EOS}}$) to guarantee exact delivered dose at scheduled injection time ($t_{\text{calib}}$).
+- **Physical Isotope Library**: Pre-configured physical constants for Fluorine-18 ($t_{1/2} = 109.77\text{m}$), Carbon-11 ($t_{1/2} = 20.36\text{m}$), Gallium-68 ($t_{1/2} = 67.71\text{m}$), and Lutetium-177 ($t_{1/2} = 6.647\text{d}$).
+
+---
+
+### 3. Clinical Dose Prescription & Calibration Wizard
+A 4-step guided clinical order placement wizard enforcing protocol constraints and regulatory guardrails before transmission to radiopharmacies.
+
+<div align="center">
+  <img src="assets/ui-order-creation-wizard.png" alt="Clinical Dose Prescription Wizard" width="100%" />
+</div>
+
+- **Step 1: Protocol & Site**: Selects active clinical protocols (`LILLY-AV45-A05`, `LILLY-AV1451-TAU`), verifies destination hot lab RAM authorization, and generates PHI-compliant de-identified patient hashes.
+- **Step 2: Isotope & Decay Sizing**: Configures injection dose and calculates transit decay buffers in real time.
+- **Step 3: Verification**: Cross-checks physical equipment constraints and courier cutoffs.
+- **Step 4: FDA 21 CFR Part 11 Electronic Signature**: Requires authorized practitioner credentials and legal certification checkbox before cryptographic record generation.
+
+---
+
+### 4. FDA 21 CFR Part 11 Cryptographic Audit Trail Inspector
+An immutable, tamper-evident audit ledger visualizing all table mutations, operator interventions, and QA approvals.
+
+<div align="center">
+  <img src="assets/ui-audit-trail-inspector.png" alt="FDA 21 CFR Part 11 Audit Trail Inspector" width="100%" />
+</div>
+
+- **State Mutation Diffs**: Highlights exact JSON before-and-after values (`- previous` vs `+ new`).
+- **Cryptographic Chaining**: Validates SHA-256 forward hashes ($H_N = \text{SHA-256}(H_{N-1} \parallel \dots)$) with automated integrity verification badges.
+- **Regulatory Transparency**: Adheres strictly to FDA 21 CFR §11.10(e) independent timestamp and non-overwriting audit trail standards.
 
 ---
 
@@ -245,10 +306,14 @@ Multi-day clinical order workflows are managed via **Temporal.io** state machine
 git clone https://github.com/saiyasaswinimajety/clinical-dose-management-platform.git
 cd clinical-dose-management-platform
 
-# 2. Run comprehensive test suite (17 Unit & MockMvc Integration Tests)
-mvn clean test
+# 2. Start React 18 / TypeScript Frontend (Port 3000)
+cd frontend
+npm install
+npm run dev
 
-# 3. Start local development server
+# 3. Start Spring Boot Microservices Backend (Port 8080)
+cd ..
+mvn clean test
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
