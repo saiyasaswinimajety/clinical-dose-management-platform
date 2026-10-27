@@ -34,7 +34,7 @@ Because radiopharmaceuticals decay continuously from the moment cyclotron bombar
 
 ## 💻 Regulated Clinical Web UI (React 18 & TypeScript)
 
-The front-end is engineered as a responsive, high-reliability single-page application built with **React 18**, **TypeScript**, and **Vite** under `frontend/`. It models the operational workflows of **Eli Lilly's Avid Radiopharmaceuticals Dose Management System (DMS)**, separating user interactions into role-tailored personas (*Hospital Clinical Coordinator*, *Cyclotron Radiopharmacist*, and *QA Release Auditor*).
+The front-end is engineered as a responsive, high-reliability single-page application built with **React 18**, **TypeScript**, and **Vite** under `frontend/`. It models the operational workflows of regulated radiopharmaceutical manufacturing and multi-site clinical PET imaging networks, separating user interactions into role-tailored personas (*Hospital Clinical Coordinator*, *Cyclotron Radiopharmacist*, and *QA Release Auditor*).
 
 ### 1. Clinical Dose Order Grid & Lifecycle Status
 A real-time operational dashboard visualizing multi-site clinical orders, isotope radio-synthesis progress, batch allocation, and Radioactive Material (RAM) permit verification badges.
@@ -70,7 +70,7 @@ A 4-step guided clinical order placement wizard enforcing protocol constraints a
   <img src="assets/ui-order-creation-wizard.png" alt="Clinical Dose Prescription Wizard" width="100%" />
 </div>
 
-- **Step 1: Protocol & Site**: Selects active clinical protocols (`LILLY-AV45-A05`, `LILLY-AV1451-TAU`), verifies destination hot lab RAM authorization, and generates PHI-compliant de-identified patient hashes.
+- **Step 1: Protocol & Site**: Selects active clinical protocols (`PET-F18-AMYLOID-301`, `TAU-PET-AV1451-PHASE3`), verifies destination hot lab RAM authorization, and generates PHI-compliant de-identified patient hashes.
 - **Step 2: Isotope & Decay Sizing**: Configures injection dose and calculates transit decay buffers in real time.
 - **Step 3: Verification**: Cross-checks physical equipment constraints and courier cutoffs.
 - **Step 4: FDA 21 CFR Part 11 Electronic Signature**: Requires authorized practitioner credentials and legal certification checkbox before cryptographic record generation.
@@ -181,7 +181,7 @@ In distributed radiopharmacy operations, a manufacturing release cannot be direc
 From the initial clinical trial protocol setup to cyclotron synthesis, QA release, and patient injection, the complete lifecycle operates under strict temporal coordination:
 
 <div align="center">
-  <img src="assets/eli-process-flow.png" alt="Radiopharmaceutical Manufacturing to Administration Process Flow" width="95%" />
+  <img src="assets/radiopharmaceutical-manufacturing-process-flow.png" alt="Radiopharmaceutical Manufacturing to Administration Process Flow" width="95%" />
 </div>
 
 1. **Protocol & Site Onboarding**: Clinical trial sites are authorized with associated Radioactive Material (RAM) licenses and protocol site assignments.

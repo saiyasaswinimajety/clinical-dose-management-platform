@@ -43,7 +43,7 @@
   <g transform="translate(90, 105)" filter="url(#cardShadow)">
     <rect width="700" height="95" rx="12" fill="url(#userGrad)" stroke="#38bdf8" stroke-width="2"/>
     <text x="30" y="55" font-size="34">👤</text>
-    <text x="80" y="42" font-size="17" font-weight="700" fill="#ffffff">Step 1: You Use the Portal (orders.lilly.com)</text>
+    <text x="80" y="42" font-size="17" font-weight="700" fill="#ffffff">Step 1: You Use the Portal (portal.radiopharm-dms.org)</text>
     <text x="80" y="65" font-size="13" fill="#cbd5e1">• You click a button (e.g., "Cancel Order", "Log In", or refresh the page).</text>
     <text x="80" y="83" font-size="13" fill="#94a3b8">• Your browser automatically sends a background request to fetch your order data.</text>
   </g>
@@ -57,7 +57,7 @@
     
     <text x="30" y="48" font-size="32">🛡️</text>
     <text x="80" y="38" font-size="17" font-weight="700" fill="#fed7aa">Step 2: The Enterprise Security Guard (Cloudflare)</text>
-    <text x="80" y="58" font-size="13" fill="#fdba74">A central security layer that protects all Lilly websites (*.lilly.com) from cyberattacks.</text>
+    <text x="80" y="58" font-size="13" fill="#fdba74">A central security layer that protects all enterprise websites (*.radiopharm-dms.org) from cyberattacks.</text>
 
     <!-- The Blocker Box -->
     <g transform="translate(25, 75)" filter="url(#alertGlow)">
@@ -88,5 +88,5 @@
   </g>
 
   <!-- Footer -->
-  <text x="440" y="685" text-anchor="middle" font-size="12" fill="#64748b">Incident Ticket: INC15589652 • Dose Management System (DMS) Platform Team</text>
+  <text x="440" y="685" text-anchor="middle" font-size="12" fill="#64748b">Incident Ticket: INC-EDGE-SEC-403 • Regulated Clinical Radiopharmaceutical Platform</text>
 </svg>

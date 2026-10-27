@@ -14,7 +14,7 @@
   --warning-bg: #FFFBEB;
   --danger-red: #DC2626;
   --danger-bg: #FEF2F2;
-  --lilly-red: #D12630;
+  --primary-accent: #1E40AF;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -56,7 +56,7 @@ body {
 }
 
 .logo-badge {
-  background: #D12630;
+  background: #1E40AF;
   color: white;
   font-weight: 800;
   font-size: 15px;

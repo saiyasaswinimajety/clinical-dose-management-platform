@@ -9,7 +9,7 @@ interface Props {
 export const OrderCreationWizard: React.FC<Props> = ({ onOrderCreated }) => {
   const [step, setStep] = useState<number>(1);
   const [patientHash, setPatientHash] = useState<string>('PT-5521-Z3');
-  const [protocolCode, setProtocolCode] = useState<string>('LILLY-AV45-A05');
+  const [protocolCode, setProtocolCode] = useState<string>('PET-F18-AMYLOID-301');
   const [selectedSiteId, setSelectedSiteId] = useState<string>(CLINICAL_SITES[0].id);
   const [selectedIsotopeKey, setSelectedIsotopeKey] = useState<string>('F18');
   const [targetDoseMci, setTargetDoseMci] = useState<number>(10.0);
@@ -91,9 +91,9 @@ export const OrderCreationWizard: React.FC<Props> = ({ onOrderCreated }) => {
             <div className="form-group">
               <label className="form-label">Clinical Protocol Code</label>
               <select className="form-select" value={protocolCode} onChange={(e) => setProtocolCode(e.target.value)}>
-                <option value="LILLY-AV45-A05">LILLY-AV45-A05 (Florbetapir F-18 Amyloid Phase III)</option>
-                <option value="LILLY-AV1451-TAU">LILLY-AV1451-TAU (Flortaucipir Tau PET Imaging)</option>
-                <option value="LILLY-NEURO-C11">LILLY-NEURO-C11 (Carbon-11 Neurodegenerative Assay)</option>
+                <option value="PET-F18-AMYLOID-301">PET-F18-AMYLOID-301 (Florbetapir F-18 Amyloid Phase III Study)</option>
+                <option value="TAU-PET-AV1451-PHASE3">TAU-PET-AV1451-PHASE3 (Flortaucipir Tau PET Imaging)</option>
+                <option value="NEURO-C11-TRIAL-02">NEURO-C11-TRIAL-02 (Carbon-11 Neurodegenerative Assay)</option>
               </select>
             </div>
 

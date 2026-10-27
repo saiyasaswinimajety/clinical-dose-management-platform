@@ -27,10 +27,10 @@ export const App: React.FC = () => {
       <header className="header-bar">
         <div className="brand-container">
           <div className="logo-badge">
-            <span>Lilly</span>
+            <span>CDMP</span>
           </div>
           <div>
-            <div className="brand-title">Avid Radiopharmaceuticals • Dose Management Platform</div>
+            <div className="brand-title">Clinical Dose Management Platform</div>
             <div className="brand-subtitle">FDA 21 CFR Part 11 Regulated Life Sciences Cloud Portal</div>
           </div>
         </div>
@@ -53,13 +53,13 @@ export const App: React.FC = () => {
               }}
             >
               <option value="Hospital Clinical Coordinator" style={{ color: '#0F172A' }}>
-                Hospital Clinical Coordinator (Penn Medicine)
+                Hospital Clinical Coordinator (PET Imaging Center)
               </option>
               <option value="Radiopharmacist / Production Lead" style={{ color: '#0F172A' }}>
-                Radiopharmacist / Production Lead (Avid Cyclotron)
+                Radiopharmacist / Production Lead (Cyclotron Facility)
               </option>
               <option value="QA Release Auditor" style={{ color: '#0F172A' }}>
-                QA Release Auditor (Eli Lilly Compliance)
+                QA Release Compliance Officer
               </option>
             </select>
           </div>

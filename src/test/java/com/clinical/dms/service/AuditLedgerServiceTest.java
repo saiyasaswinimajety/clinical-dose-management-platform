@@ -59,7 +59,7 @@ class AuditLedgerServiceTest {
 
         AuditLogEntry entry = auditLedgerService.recordAudit(
                 "DOSE_ORDER", "ORD-123", "INSERT",
-                null, "Created Order ORD-123", "operator@lilly.com",
+                null, "Created Order ORD-123", "operator@radiopharm.org",
                 "New Clinical Trial Dosing", "192.168.1.50"
         );
 

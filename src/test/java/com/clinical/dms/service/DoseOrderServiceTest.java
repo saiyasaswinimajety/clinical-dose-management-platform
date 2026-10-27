@@ -45,7 +45,7 @@ class DoseOrderServiceTest {
         );
 
         f18 = new Isotope("ISO-F18", "F-18", "Fluorine-18", 109.77, "mCi");
-        protocol = new ClinicalProtocol("PROT-ONC-001", "PROT-ONC-001", "Phase III Oncology Tau Imaging", "Eli Lilly", "PHASE_3", f18, 10.0);
+        protocol = new ClinicalProtocol("PROT-ONC-001", "PROT-ONC-001", "Phase III Oncology Tau Imaging", "BioPharma Clinical Sponsor", "PHASE_3", f18, 10.0);
         site = new ClinicalSite("SITE-JHU-01", "SITE-JHU-01", "Johns Hopkins Hospital PET Center", "Baltimore, MD", 39.296, -76.592, "pet@jhu.edu");
     }
 

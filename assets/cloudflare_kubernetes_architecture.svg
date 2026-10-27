@@ -58,8 +58,8 @@
     <text x="37" y="43" text-anchor="middle" font-size="22">💻</text>
     
     <text x="75" y="36" font-size="16" font-weight="700" fill="#ffffff">User Browser (React 18 SPA on Vite)</text>
-    <text x="75" y="55" font-size="12" fill="#93c5fd">• User clicks "Cancel Order" on orders.lilly.com</text>
-    <text x="75" y="70" font-size="12" fill="#94a3b8">• Background request: OPTIONS https://orders-backend.lilly.com/v1/...</text>
+    <text x="75" y="55" font-size="12" fill="#93c5fd">• User clicks "Cancel Order" on portal.radiopharm-dms.org</text>
+    <text x="75" y="70" font-size="12" fill="#94a3b8">• Background request: OPTIONS https://api.radiopharm-dms.org/v1/...</text>
   </g>
 
   <!-- Arrow 1: Browser to Cloudflare -->
@@ -73,7 +73,7 @@
     <!-- Header -->
     <rect x="20" y="15" width="30" height="30" rx="6" fill="#f38020"/>
     <text x="35" y="36" text-anchor="middle" font-size="18" fill="#fff">☁️</text>
-    <text x="60" y="32" font-size="17" font-weight="700" fill="#fba919">1. CLOUDFLARE EDGE (Enterprise Zone: *.lilly.com)</text>
+    <text x="60" y="32" font-size="17" font-weight="700" fill="#fba919">1. CLOUDFLARE EDGE (Enterprise Zone: *.radiopharm-dms.org)</text>
     <text x="60" y="48" font-size="12" fill="#d1d5db">Web Application Firewall (WAF) &amp; Bot Management / Turnstile</text>
 
     <!-- Error Callout Box -->
@@ -148,5 +148,5 @@
   </g>
 
   <!-- Footer Info -->
-  <text x="440" y="890" text-anchor="middle" font-size="12" font-weight="500" fill="#6b7280">Dose Management System • Eli Lilly and Company • Cloudflare WAF Incident INC15589652</text>
+  <text x="440" y="890" text-anchor="middle" font-size="12" font-weight="500" fill="#6b7280">Dose Management System • Regulated Radiopharmaceutical Platform Architecture • Cloudflare Edge WAF Case Study</text>
 </svg>
