@@ -36,14 +36,14 @@
   </defs>
 
   <!-- Title Section -->
-  <text x="440" y="45" text-anchor="middle" font-size="24" font-weight="700" fill="#f8fafc">What Happened to Dose Management System (DMS)?</text>
+  <text x="440" y="45" text-anchor="middle" font-size="24" font-weight="700" fill="#f8fafc">What Happened to Clinical Order Management System (COMS)?</text>
   <text x="440" y="72" text-anchor="middle" font-size="14" fill="#94a3b8">A Simple Explanation: Why our application is healthy, but users are seeing errors</text>
 
   <!-- 1. USER LAYER -->
   <g transform="translate(90, 105)" filter="url(#cardShadow)">
     <rect width="700" height="95" rx="12" fill="url(#userGrad)" stroke="#38bdf8" stroke-width="2"/>
     <text x="30" y="55" font-size="34">👤</text>
-    <text x="80" y="42" font-size="17" font-weight="700" fill="#ffffff">Step 1: You Use the Portal (portal.radiopharm-dms.org)</text>
+    <text x="80" y="42" font-size="17" font-weight="700" fill="#ffffff">Step 1: You Use the Portal (portal.clinical-coms.org)</text>
     <text x="80" y="65" font-size="13" fill="#cbd5e1">• You click a button (e.g., "Cancel Order", "Log In", or refresh the page).</text>
     <text x="80" y="83" font-size="13" fill="#94a3b8">• Your browser automatically sends a background request to fetch your order data.</text>
   </g>
@@ -57,7 +57,7 @@
     
     <text x="30" y="48" font-size="32">🛡️</text>
     <text x="80" y="38" font-size="17" font-weight="700" fill="#fed7aa">Step 2: The Enterprise Security Guard (Cloudflare)</text>
-    <text x="80" y="58" font-size="13" fill="#fdba74">A central security layer that protects all enterprise websites (*.radiopharm-dms.org) from cyberattacks.</text>
+    <text x="80" y="58" font-size="13" fill="#fdba74">A central security layer that protects all enterprise websites (*.clinical-coms.org) from cyberattacks.</text>
 
     <!-- The Blocker Box -->
     <g transform="translate(25, 75)" filter="url(#alertGlow)">
@@ -67,7 +67,7 @@
       
       <text x="20" y="60" font-size="13" fill="#fecdd3">1. Recent security updates made Cloudflare much stricter against automated bot traffic.</text>
       <text x="20" y="80" font-size="13" fill="#fecdd3">2. When you refresh rapidly or return after being idle, Cloudflare asks: <tspan fill="#ffffff" font-weight="bold">"Are you a human?"</tspan></text>
-      <text x="20" y="100" font-size="13" fill="#fecdd3">3. Normal websites show a checkbox, but modern web apps (like DMS) work in the background.</text>
+      <text x="20" y="100" font-size="13" fill="#fecdd3">3. Normal websites show a checkbox, but modern web apps (like COMS) work in the background.</text>
       <text x="20" y="120" font-size="13" font-weight="700" fill="#ffffff">👉 Result: Cloudflare blocks the request right at the front door before it ever reaches our servers!</text>
     </g>
   </g>
@@ -81,10 +81,10 @@
   <g transform="translate(90, 530)" filter="url(#cardShadow)">
     <rect width="700" height="110" rx="12" fill="url(#appGrad)" stroke="#10b981" stroke-width="2"/>
     <text x="30" y="58" font-size="34">🏥</text>
-    <text x="80" y="38" font-size="17" font-weight="700" fill="#a7f3d0">Step 3: Dose Management System Servers (Our App &amp; Database)</text>
+    <text x="80" y="38" font-size="17" font-weight="700" fill="#a7f3d0">Step 3: Clinical Order Management System Servers (Our App &amp; Database)</text>
     <text x="80" y="60" font-size="13" fill="#d1fae5">• Status: <tspan fill="#34d399" font-weight="bold">100% Healthy &amp; Operational</tspan> (No code bugs, no database downtime).</text>
     <text x="80" y="80" font-size="13" fill="#d1fae5">• Why it failed: Our servers never received your request because Cloudflare stopped it in Step 2.</text>
-    <text x="80" y="98" font-size="13" fill="#86efac">• <tspan font-weight="bold">Solution in Progress:</tspan> CyberSecurity is adding an exemption to let DMS traffic pass freely.</text>
+    <text x="80" y="98" font-size="13" fill="#86efac">• <tspan font-weight="bold">Solution in Progress:</tspan> CyberSecurity is adding an exemption to let COMS traffic pass freely.</text>
   </g>
 
   <!-- Footer -->

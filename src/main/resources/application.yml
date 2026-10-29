@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: clinical-dose-management-platform
+    name: clinical-order-management-platform
   profiles:
     active: local
   jackson:
@@ -26,7 +26,7 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:h2:mem:dms_dev;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    url: jdbc:h2:mem:coms_dev;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
     driverClassName: org.h2.Driver
     username: sa
     password: ""
@@ -38,15 +38,15 @@ spring:
   flyway:
     enabled: false
 
-dms:
+coms:
   temporal:
     target: localhost:7233
     namespace: default
-    task-queue: DOSE_MANAGEMENT_TASK_QUEUE
+    task-queue: CLINICAL_ORDER_TASK_QUEUE
     enabled: false # Mock / In-memory during offline local dev
   audit:
     enforce-hash-chain: true
-    sha256-salt: "dms-21cfr11-secure-salt"
+    sha256-salt: "coms-21cfr11-secure-salt"
 
 ---
 # Docker & Production profile (PostgreSQL 16 + Flyway + Temporal Server)
@@ -55,7 +55,7 @@ spring:
     activate:
       on-profile: docker
   datasource:
-    url: jdbc:postgresql://postgres:5432/dose_management_system_dev
+    url: jdbc:postgresql://postgres:5432/clinical_order_system_dev
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgrespassword
@@ -68,12 +68,12 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
-dms:
+coms:
   temporal:
     target: temporal:7233
     namespace: default
-    task-queue: DOSE_MANAGEMENT_TASK_QUEUE
+    task-queue: CLINICAL_ORDER_TASK_QUEUE
     enabled: true
   audit:
     enforce-hash-chain: true
-    sha256-salt: "dms-21cfr11-secure-salt"
+    sha256-salt: "coms-21cfr11-secure-salt"

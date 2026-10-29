@@ -11,11 +11,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.clinical.dms</groupId>
-    <artifactId>clinical-dose-management-platform</artifactId>
+    <groupId>com.clinical.coms</groupId>
+    <artifactId>clinical-order-management-platform</artifactId>
     <version>1.0.0</version>
-    <name>clinical-dose-management-platform</name>
-    <description>21 CFR Part 11 Compliant Radiopharmaceutical Dose Orchestration Platform</description>
+    <name>clinical-order-management-platform</name>
+    <description>21 CFR Part 11 Compliant Clinical Order Orchestration Platform</description>
 
     <properties>
         <java.version>21</java.version>

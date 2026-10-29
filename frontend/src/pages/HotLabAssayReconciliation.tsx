@@ -23,7 +23,7 @@ export const HotLabAssayReconciliation: React.FC = () => {
       <div className="compliance-banner">
         <ShieldCheck size={18} color="#1E40AF" />
         <div>
-          <strong>Protocol Compliance Threshold:</strong> Administered dose must fall within ±10% of prescribed protocol activity (9.0 mCi to 11.0 mCi for AV-45 Florbetapir amyloid scans).
+          <strong>Protocol Compliance Threshold:</strong> Administered dose must fall within ±10% of prescribed protocol activity (9.0 mCi to 11.0 mCi for 18F-FDG Oncology PET scans).
         </div>
       </div>
 

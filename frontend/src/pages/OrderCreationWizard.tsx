@@ -92,7 +92,7 @@ export const OrderCreationWizard: React.FC<Props> = ({ onOrderCreated }) => {
               <label className="form-label">Clinical Protocol Code</label>
               <select className="form-select" value={protocolCode} onChange={(e) => setProtocolCode(e.target.value)}>
                 <option value="PET-F18-AMYLOID-301">PET-F18-AMYLOID-301 (Florbetapir F-18 Amyloid Phase III Study)</option>
-                <option value="TAU-PET-AV1451-PHASE3">TAU-PET-AV1451-PHASE3 (Flortaucipir Tau PET Imaging)</option>
+                <option value="TAU-PET-18F-PHASE3">TAU-PET-18F-PHASE3 (Fluorine-18 Tau PET Imaging)</option>
                 <option value="NEURO-C11-TRIAL-02">NEURO-C11-TRIAL-02 (Carbon-11 Neurodegenerative Assay)</option>
               </select>
             </div>

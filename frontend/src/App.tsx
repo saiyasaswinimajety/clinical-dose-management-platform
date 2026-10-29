@@ -27,10 +27,10 @@ export const App: React.FC = () => {
       <header className="header-bar">
         <div className="brand-container">
           <div className="logo-badge">
-            <span>CDMP</span>
+            <span>COMS</span>
           </div>
           <div>
-            <div className="brand-title">Clinical Dose Management Platform</div>
+            <div className="brand-title">Clinical Order Management Platform</div>
             <div className="brand-subtitle">FDA 21 CFR Part 11 Regulated Life Sciences Cloud Portal</div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export const App: React.FC = () => {
         borderTop: '1px solid #1E293B'
       }}>
         <div>
-          Clinical Dose Management Platform v3.2.0 • GxP &amp; 21 CFR Part 11 Validated System
+          Clinical Order Management Platform (COMS) v3.2.0 • GxP &amp; 21 CFR Part 11 Validated System
         </div>
         <div>
           Engineered by Sai Yasaswini Majety (Full Stack Systems Engineer) • React 18, TypeScript, Python, Spring Boot, Temporal.io

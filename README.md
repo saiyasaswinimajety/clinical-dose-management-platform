@@ -1,10 +1,10 @@
 <div align="center">
 
-# ☢️ Clinical Dose Management Platform (21 CFR Part 11)
+# 🏥 Clinical Order Management Platform (COMS) (21 CFR Part 11)
 
-**Distributed Radiopharmaceutical Dosing, Precision Nuclear Decay Compensation & Temporal Workflow Engine**
+**Enterprise Clinical Order Orchestration, Precision Decay Logistics & Regulated GxP Workflow Engine**
 
-[![CI Pipeline](https://github.com/saiyasaswinimajety/clinical-dose-management-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/saiyasaswinimajety/clinical-dose-management-platform/actions)
+[![CI Pipeline](https://github.com/saiyasaswinimajety/clinical-order-management-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/saiyasaswinimajety/clinical-order-management-platform/actions)
 [![React 18](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -36,11 +36,11 @@ Because radiopharmaceuticals decay continuously from the moment cyclotron bombar
 
 The front-end is engineered as a responsive, high-reliability single-page application built with **React 18**, **TypeScript**, and **Vite** under `frontend/`. It models the operational workflows of regulated radiopharmaceutical manufacturing and multi-site clinical PET imaging networks, separating user interactions into role-tailored personas (*Hospital Clinical Coordinator*, *Cyclotron Radiopharmacist*, and *QA Release Auditor*).
 
-### 1. Clinical Dose Order Grid & Lifecycle Status
+### 1. Clinical Order Grid & Lifecycle Status
 A real-time operational dashboard visualizing multi-site clinical orders, isotope radio-synthesis progress, batch allocation, and Radioactive Material (RAM) permit verification badges.
 
 <div align="center">
-  <img src="assets/ui-dose-orders-grid.png" alt="Clinical Dose Order Grid (React 18 / TypeScript)" width="100%" />
+  <img src="assets/ui-dose-orders-grid.png" alt="Clinical Order Grid (React 18 / TypeScript)" width="100%" />
 </div>
 
 - **Dynamic Lifecycle Badges**: Visualizes active states (`ORDER_SUBMITTED`, `RADIO_SYNTHESIS`, `DECAY_COMPENSATED`, `QA_RELEASED`, `DISPATCHED`).
@@ -64,14 +64,14 @@ $$A(t) = A_0 \cdot e^{-\lambda t}$$
 
 ---
 
-### 3. Clinical Dose Prescription & Calibration Wizard
+### 3. Clinical Order Placement & Calibration Wizard
 A 4-step guided clinical order placement wizard enforcing protocol constraints and regulatory guardrails before transmission to radiopharmacies.
 
 <div align="center">
-  <img src="assets/ui-order-creation-wizard.png" alt="Clinical Dose Prescription Wizard" width="100%" />
+  <img src="assets/ui-order-creation-wizard.png" alt="Clinical Order Placement Wizard" width="100%" />
 </div>
 
-- **Step 1: Protocol & Site**: Selects active clinical protocols (`PET-F18-AMYLOID-301`, `TAU-PET-AV1451-PHASE3`), verifies destination hot lab RAM authorization, and generates PHI-compliant de-identified patient hashes.
+- **Step 1: Protocol & Site**: Selects active clinical protocols (`PET-F18-AMYLOID-301`, `TAU-PET-18F-PHASE3`), verifies destination hot lab RAM authorization, and generates PHI-compliant de-identified patient hashes.
 - **Step 2: Isotope & Decay Sizing**: Configures injection dose and calculates transit decay buffers in real time.
 - **Step 3: Verification**: Cross-checks physical equipment constraints and courier cutoffs.
 - **Step 4: FDA 21 CFR Part 11 Electronic Signature**: Requires authorized practitioner credentials and legal certification checkbox before cryptographic record generation.
@@ -96,7 +96,7 @@ An immutable, tamper-evident audit ledger visualizing all table mutations, opera
 The platform is engineered as a distributed, high-reliability backend deployed on **AWS Elastic Kubernetes Service (EKS)**, integrating edge security, distributed sagas, dual-layer compliance auditing, and asynchronous cloud event pipelines.
 
 <div align="center">
-  <img src="assets/dose-management-system-architecture.png" alt="Clinical Dose Management Platform - Production Distributed Architecture" width="100%" />
+  <img src="assets/architecture.png" alt="Clinical Order Management Platform - Production Distributed Architecture" width="100%" />
 </div>
 
 ### Architectural Topology
@@ -122,7 +122,7 @@ The platform is engineered as a distributed, high-reliability backend deployed o
 Decomposed according to **Domain-Driven Design (DDD)** principles, the platform isolates core domain capabilities into six cohesive bounded contexts:
 
 <div align="center">
-  <img src="assets/dms-component-architecture.png" alt="DMS Component Architecture" width="90%" />
+  <img src="assets/coms-component-architecture.png" alt="COMS Component Architecture" width="90%" />
 </div>
 
 | Bounded Context | Core Domain Responsibilities | Key Entities & Services |
@@ -130,7 +130,7 @@ Decomposed according to **Domain-Driven Design (DDD)** principles, the platform 
 | **1. Identity & Access** | 8-level security hierarchy separating Internal Azure AD enterprise personas from External ID.me hospital personas. Dynamic date-range validity (`valid_from`, `valid_to`). | `User`, `Role`, `Group`, `JwtAuthFilter` |
 | **2. Master Data & Regulatory** | Master partners model with specialized extension tables (`imaging_sites`, `manufacturers`), clinical trial protocols, and Radioactive Material (RAM) possession permits. | `Partner`, `Product`, `Isotope`, `RAMLicense` |
 | **3. Capacity & Scheduling** | Cyclotron synthesizer capacity calculation, working calendars, exception holidays, and the 3-Lane Highway logistics priority model. | `MfgSchedule`, `CapacityReservation`, `LogisticRecord` |
-| **4. Dose Order Aggregate** | Commercial 2-step and clinical 3-step approvals, GxP Cancel-and-Recreate mechanics, and operational badges (`B`, `U`, `U5+`, `M`, `T`, `V`, `N`). | `DoseOrder`, `DoseOrderService`, `IndicatorEngine` |
+| **4. Clinical Order Aggregate** | Commercial 2-step and clinical 3-step approvals, GxP Cancel-and-Recreate mechanics, and operational badges (`B`, `U`, `U5+`, `M`, `T`, `V`, `N`). | `DoseOrder`, `DoseOrderService`, `IndicatorEngine` |
 | **5. Injection Status** | Post-delivery clinical loop closure, calculating decay-corrected net administered patient activity and protocol adherence. | `InjectionRecord`, `AdministrationAssay`, `DecayService` |
 | **6. Audit & Telemetry** | Dual-layer compliance auditing via PostgreSQL database triggers and asynchronous Loki structured business event dispatchers. | `AuditLog`, `AuditTrigger`, `CdcSyncScheduler` |
 
@@ -141,7 +141,7 @@ Decomposed according to **Domain-Driven Design (DDD)** principles, the platform 
 The capacity management engine resolves multi-constraint optimization problems whenever a hospital requests a dose calibration slot. The engine evaluates physical arrival times, equipment volume safety thresholds, and synthesizer batch capacities to determine allowable administration windows.
 
 <div align="center">
-  <img src="assets/capacity-management-decision-flow.png" alt="Dose Order Capacity Management - Complete Decision Flow" width="100%" />
+  <img src="assets/capacity-management-decision-flow.png" alt="Clinical Order Capacity Management - Complete Decision Flow" width="100%" />
 </div>
 
 ### Dynamic Multi-Constraint Decision Logic
@@ -195,7 +195,7 @@ If validated, the platform soft-locks the batch capacity allocation; if violated
 The platform links supply-side manufacturing schedules to demand-side hospital orders through a dedicated 7-tier domain hierarchy.
 
 <div align="center">
-  <img src="assets/dose-order-creation-sequence.png" alt="Dose Order Creation Sequence & 7-Tier Domain Hierarchy" width="75%" />
+  <img src="assets/dose-order-creation-sequence.png" alt="Clinical Order Creation Sequence & 7-Tier Domain Hierarchy" width="75%" />
 </div>
 
 ### The Logistics Record: "The Missing Link"
@@ -227,10 +227,10 @@ From the initial clinical trial protocol setup to cyclotron synthesis, QA releas
 <a id="audit-architecture"></a>
 ## 🛡️ Dual-Layer Audit Architecture (FDA 21 CFR Part 11)
 
-To meet FDA GxP requirements for electronic records and signatures, DMS implements a **Dual-Layer Auditing Pipeline** combining application-level observability with database-level cryptographic enforcement:
+To meet FDA GxP requirements for electronic records and signatures, COMS implements a **Dual-Layer Auditing Pipeline** combining application-level observability with database-level cryptographic enforcement:
 
 <div align="center">
-  <img src="assets/dms-dual-layer-audit-pipeline.png" alt="Dual-Layer Audit Architecture Pipeline" width="95%" />
+  <img src="assets/coms-dual-layer-audit-pipeline.png" alt="Dual-Layer Audit Architecture Pipeline" width="95%" />
 </div>
 
 ### Auditing Layers
@@ -260,7 +260,7 @@ Where the physical decay constant $\lambda$ is defined by:
 $$\lambda = \frac{\ln(2)}{t_{1/2}}$$
 
 <div align="center">
-  <img src="assets/dms-decay-and-calibration-algorithm.png" alt="Radioactive Decay Compensation & Calibration Timing Engine" width="95%" />
+  <img src="assets/coms-decay-and-calibration-algorithm.png" alt="Radioactive Decay Compensation & Calibration Timing Engine" width="95%" />
 </div>
 
 ### Sizing and Administration Calculations
@@ -338,8 +338,8 @@ Multi-day clinical order workflows are managed via **Temporal.io** state machine
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/saiyasaswinimajety/clinical-dose-management-platform.git
-cd clinical-dose-management-platform
+git clone https://github.com/saiyasaswinimajety/clinical-order-management-platform.git
+cd clinical-order-management-platform
 
 # 2. Start React 18 / TypeScript Frontend (Port 3000)
 cd frontend
@@ -369,7 +369,7 @@ curl http://localhost:8080/actuator/health
 
 ## 📡 API Reference
 
-### 1. Create Clinical Dose Order
+### 1. Create Clinical Order
 ```bash
 curl -X POST http://localhost:8080/api/v1/orders \
   -H "Content-Type: application/json" \
@@ -422,7 +422,7 @@ curl -X GET http://localhost:8080/api/v1/audit-trail/verify
 ## 👤 Author
 
 **Sai Yasaswini Majety**  
-*Senior Software Engineer - Dose Management Platform*  
+*Senior Full Stack Engineer - Clinical Platforms & Systems*  
 - GitHub: [@saiyasaswinimajety](https://github.com/saiyasaswinimajety)
 
 ---

@@ -1,5 +1,5 @@
 -- V1__init_schema.sql
--- Radiopharmaceutical Clinical Dose Management Platform Core Schema
+-- Clinical Order Management Platform Core Schema
 
 CREATE TABLE IF NOT EXISTS isotopes (
     id VARCHAR(36) PRIMARY KEY,
