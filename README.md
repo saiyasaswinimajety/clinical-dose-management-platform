@@ -12,7 +12,7 @@
 [![Spring Boot 3.2](https://img.shields.io/badge/Spring%20Boot-3.2.5-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Temporal.io](https://img.shields.io/badge/Temporal-1.24.0-000000?logo=temporal&logoColor=white)](https://temporal.io/)
 [![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Compliance](https://img.shields.io/badge/Compliance-21%20CFR%20Part%2011%20%7C%20USP%20%3C823%3E-blue)](#-dual-layer-audit-architecture-fda-21-cfr-part-11)
+[![Compliance](https://img.shields.io/badge/Compliance-21%20CFR%20Part%2011%20%7C%20USP%20%3C823%3E-blue)](#audit-architecture)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 </div>
@@ -44,22 +44,23 @@ A real-time operational dashboard visualizing multi-site clinical orders, isotop
 </div>
 
 - **Dynamic Lifecycle Badges**: Visualizes active states (`ORDER_SUBMITTED`, `RADIO_SYNTHESIS`, `DECAY_COMPENSATED`, `QA_RELEASED`, `DISPATCHED`).
-- **RAM Permit Gate**: Instant cross-reference against hospital possession limits ($150\text{ mCi}$ - $300\text{ mCi}$) with visual compliance indicators.
+- **RAM Permit Gate**: Instant cross-reference against hospital possession limits (150 mCi to 300 mCi) with visual compliance indicators.
 - **Client-Side Filtering**: High-speed filtering by order ID, protocol, clinical imaging center, or de-identified patient hash.
 
 ---
 
 ### 2. Nuclear Physics: Real-Time Exponential Decay & Calibration Engine
 An interactive, high-precision SVG decay calculation engine that visualizes continuous radioactive degradation:
+
 $$A(t) = A_0 \cdot e^{-\lambda t}$$
 
 <div align="center">
   <img src="assets/ui-decay-calibration-engine.png" alt="Nuclear Decay Math and Calibration Engine" width="100%" />
 </div>
 
-- **Interactive Curve Modeling**: Real-time vector plotting of radioactive decay curves across custom transit windows ($0$ to $300\text{ minutes}$).
+- **Interactive Curve Modeling**: Real-time vector plotting of radioactive decay curves across custom transit windows (0 to 300 minutes).
 - **Automated Synthesis Sizing**: Calculates required cyclotron overshoot at End of Synthesis ($t_{\text{EOS}}$) to guarantee exact delivered dose at scheduled injection time ($t_{\text{calib}}$).
-- **Physical Isotope Library**: Pre-configured physical constants for Fluorine-18 ($t_{1/2} = 109.77\text{m}$), Carbon-11 ($t_{1/2} = 20.36\text{m}$), Gallium-68 ($t_{1/2} = 67.71\text{m}$), and Lutetium-177 ($t_{1/2} = 6.647\text{d}$).
+- **Physical Isotope Library**: Pre-configured physical constants for Fluorine-18 ($t_{1/2} = 109.8 \text{ min}$), Carbon-11 ($t_{1/2} = 20.4 \text{ min}$), Gallium-68 ($t_{1/2} = 67.7 \text{ min}$), and Lutetium-177 ($t_{1/2} = 6.65 \text{ days}$).
 
 ---
 
@@ -85,7 +86,7 @@ An immutable, tamper-evident audit ledger visualizing all table mutations, opera
 </div>
 
 - **State Mutation Diffs**: Highlights exact JSON before-and-after values (`- previous` vs `+ new`).
-- **Cryptographic Chaining**: Validates SHA-256 forward hashes ($H_N = \text{SHA-256}(H_{N-1} \parallel \dots)$) with automated integrity verification badges.
+- **Cryptographic Chaining**: Validates SHA-256 forward hashes ($H_N = \text{SHA256}(H_{N-1} \parallel \text{Payload}_N)$) with automated integrity verification badges.
 - **Regulatory Transparency**: Adheres strictly to FDA 21 CFR §11.10(e) independent timestamp and non-overwriting audit trail standards.
 
 ---
@@ -143,19 +144,49 @@ The capacity management engine resolves multi-constraint optimization problems w
   <img src="assets/capacity-management-decision-flow.png" alt="Dose Order Capacity Management - Complete Decision Flow" width="100%" />
 </div>
 
-### Decision Logic
+### Dynamic Multi-Constraint Decision Logic
 
-1. **Earliest Calibration Time ($\text{Time}_{\text{earliest}}$)**:
-   - **Transit-Based Arrival ($\text{Time}_A$)**: $\text{Ship Time} + \text{Transit Duration} + \text{Buffer Time}$
-   - **Min Volume Safety Time ($\text{Time}_B$)**: If manufacturer specifies $\text{min\_dose\_vol} > 0$, ensures radiological concentration has decayed sufficiently for safe syringe handling:
-     $$\text{Time}_B = t_{\text{EOS}} + \frac{\ln\left(\frac{\text{MinVol}}{\text{BatchVol}} \cdot \frac{\text{Capacity}}{\text{Qty}}\right)}{\lambda}$$
-   - **Binding Constraint**: $\text{Time}_{\text{earliest}} = \max(\text{Time}_A, \text{Time}_B)$
-2. **Latest Injection Time ($\text{Time}_{\text{latest}}$)**:
-   - **Capacity-Based Limit ($\text{Time}_X$)**: $t_{\text{EOS}} + \frac{\ln(\text{ReducedCapacity} / \text{Qty})}{\lambda}$
-   - **Schedule-Based Limit ($\text{Time}_Y$)**: $t_{\text{EOS}} + \text{minutes\_until\_last\_injection}$ (operational cutoff, typically 10 hours)
-   - **Max Volume Limit ($\text{Time}_Z$)**: Equipment physical syringe capacity constraint
-   - **Binding Constraint**: $\text{Time}_{\text{latest}} = \min(\text{Time}_X, \text{Time}_Y, \text{Time}_Z)$
-3. **Window Validation**: Order is accepted if and only if $\text{Time}_{\text{latest}} \ge \text{Time}_{\text{earliest}}$.
+The capacity management engine resolves allowable administration windows by evaluating three physical and operational constraints:
+
+#### 1. Earliest Calibration Boundary ($T_{\text{earliest}}$)
+
+- **Transit-Based Physical Arrival ($T_A$)**:  
+  Calculates the fastest ground and courier flight arrival timestamp:
+  $$T_A = t_{\text{ship}} + t_{\text{transit}} + t_{\text{buffer}}$$
+
+- **Min Volume Safety Decay ($T_B$)**:  
+  When the manufacturer specifies `min_dose_vol > 0`, radiological concentration must decay sufficiently to ensure safe syringe handling without exceeding draw limits:
+  $$T_B = t_{\text{EOS}} + \frac{1}{\lambda} \ln \left( \frac{V_{\text{min}}}{V_{\text{batch}}} \cdot \frac{C_{\text{batch}}}{Q} \right)$$
+
+- **Earliest Binding Constraint**:  
+  $$T_{\text{earliest}} = \max(T_A, T_B)$$
+  *(Transit-based arrival governs 90% of all clinical routes).*
+
+#### 2. Latest Injection Boundary ($T_{\text{latest}}$)
+
+- **Batch Decay Capacity Limit ($T_X$)**:  
+  Calculates the exact timestamp when remaining available batch radioactivity drops below ordered clinical dose $Q$:
+  $$T_X = t_{\text{EOS}} + \frac{1}{\lambda} \ln \left( \frac{C_{\text{avail}}}{Q} \right)$$
+
+- **Operational Schedule Cutoff ($T_Y$)**:  
+  Enforces regulatory shift cutoffs:
+  $$T_Y = t_{\text{EOS}} + \Delta t_{\text{max}}$$
+  *(Where `minutes_until_last_injection` is configured, typically 10 hours per GxP protocol).*
+
+- **Syringe Max Volume Limit ($T_Z$)**:  
+  Equipment physical volume threshold ($V_{\text{draw}} \le V_{\text{max}}$).
+
+- **Latest Binding Constraint**:  
+  $$T_{\text{latest}} = \min(T_X, T_Y, T_Z)$$
+  *(Schedule cutoff governs 80% of normal days; batch capacity governs during high-volume spikes).*
+
+#### 3. Clinical Window Validation Gate
+
+The order is accepted if and only if:
+1. Feasible Administration Window: $T_{\text{latest}} \ge T_{\text{earliest}}$
+2. Prescription Feasibility: $t_{\text{calib}} \in [T_{\text{earliest}}, T_{\text{latest}}]$
+
+If validated, the platform soft-locks the batch capacity allocation; if violated, the system rejects the request with diagnostic rationale codes (`TRANSIT_UNFEASIBLE`, `CONCENTRATION_TOO_HOT`, or `CAPACITY_EXHAUSTED`) and recommends alternative calibration slots.
 
 ---
 
@@ -193,6 +224,7 @@ From the initial clinical trial protocol setup to cyclotron synthesis, QA releas
 
 ---
 
+<a id="audit-architecture"></a>
 ## 🛡️ Dual-Layer Audit Architecture (FDA 21 CFR Part 11)
 
 To meet FDA GxP requirements for electronic records and signatures, DMS implements a **Dual-Layer Auditing Pipeline** combining application-level observability with database-level cryptographic enforcement:
@@ -209,8 +241,9 @@ To meet FDA GxP requirements for electronic records and signatures, DMS implemen
 2. **Database Trigger Layer (Cryptographic Ground Truth)**:
    - PostgreSQL table triggers execute `row_to_json(OLD)` and `row_to_json(NEW)` across all audit-monitored tables.
    - Direct SQL modifications, administrative interventions, or script executions cannot bypass the audit log.
-   - Entries are chained via SHA-256 forward hashing:
-     $$H_N = \text{SHA-256}\Big( H_{N-1} \parallel \text{EntityType} \parallel \text{EntityId} \parallel \text{Action} \parallel \text{User} \parallel \text{Timestamp} \parallel \text{Payload} \Big)$$
+   - Entries are chained via cryptographic forward hashing:
+
+     $$H_N = \text{SHA256}\Big( H_{N-1} \parallel \text{EntityType} \parallel \text{EntityId} \parallel \text{Action} \parallel \text{User} \parallel \text{Timestamp} \parallel \text{Payload} \Big)$$
 3. **Compliance Data Lake Sync**:
    - `CdcSyncScheduler` runs every 60 seconds, streaming compressed audit batches to immutable, versioned **AWS S3** compliance storage.
 
@@ -232,23 +265,25 @@ $$\lambda = \frac{\ln(2)}{t_{1/2}}$$
 
 ### Sizing and Administration Calculations
 
-1. **Cyclotron Synthesis Overshoot Calculation**:
+1. **Cyclotron Synthesis Overshoot Calculation**:  
    To deliver target activity $A_{\text{calib}}$ at scheduled injection time $t_{\text{calib}}$, the radiopharmacy must synthesize an initial activity $A_{\text{EOS}}$ at End of Synthesis ($t_{\text{EOS}}$):
+
    $$A_{\text{EOS}} = A_{\text{calib}} \cdot e^{\lambda (t_{\text{calib}} - t_{\text{EOS}})}$$
 
-2. **Decay-Corrected Net Administered Dose**:
+2. **Decay-Corrected Net Administered Dose**:  
    When a patient is injected at $t_{\text{actual}}$ following hot lab assay at $t_{\text{assay}}$, with syringe residual $A_{\text{residual}}$:
+
    $$A_{\text{net}} = \left( A_{\text{assay}} \cdot e^{-\lambda (t_{\text{actual}} - t_{\text{assay}})} \right) - A_{\text{residual}}$$
 
 ### Supported Isotope Physical Constants
 
 | Isotope | Symbol | Half-Life ($t_{1/2}$) | Decay Constant ($\lambda$) | Radiation Type | Clinical Indication |
 |:---|:---:|:---:|:---:|:---:|:---|
-| **Fluorine-18** | $^{18}\text{F}$ | $109.77 \text{ min}$ | $0.0063145 \text{ min}^{-1}$ | Positron ($\beta^+$) | $[^{18}\text{F}]\text{FDG}$ Oncology PET, Amyloid Imaging |
-| **Carbon-11** | $^{11}\text{C}$ | $20.36 \text{ min}$ | $0.0340445 \text{ min}^{-1}$ | Positron ($\beta^+$) | $[^{11}\text{C}]\text{Choline}$ Brain Tumors, Cardiac |
-| **Gallium-68** | $^{68}\text{Ga}$ | $67.71 \text{ min}$ | $0.0102370 \text{ min}^{-1}$ | Positron ($\beta^+$) | $[^{68}\text{Ga}]\text{PSMA}$ Prostate Oncology |
-| **Lutetium-177** | $^{177}\text{Lu}$ | $6.647 \text{ days}$ | $7.2415 \times 10^{-5} \text{ min}^{-1}$ | Beta ($\beta^-$) / Gamma | $[^{177}\text{Lu}]\text{Dotatate}$ Neuroendocrine Theranostics |
-| **Technetium-99m** | $^{99m}\text{Tc}$ | $6.007 \text{ hours}$ | $0.0019232 \text{ min}^{-1}$ | Isomeric Gamma ($\gamma$) | SPECT Cardiac Perfusion |
+| **Fluorine-18** | $^{18}\text{F}$ | $109.8 \text{ min}$ | $0.0063145 \text{ min}^{-1}$ | Positron ($\beta^+$) | [¹⁸F] FDG Oncology PET, Amyloid Imaging |
+| **Carbon-11** | $^{11}\text{C}$ | $20.4 \text{ min}$ | $0.0340445 \text{ min}^{-1}$ | Positron ($\beta^+$) | [¹¹C] Choline Brain Tumors, Cardiac |
+| **Gallium-68** | $^{68}\text{Ga}$ | $67.7 \text{ min}$ | $0.0102370 \text{ min}^{-1}$ | Positron ($\beta^+$) | [⁶⁸Ga] PSMA Prostate Oncology |
+| **Lutetium-177** | $^{177}\text{Lu}$ | $6.65 \text{ days}$ | $7.2415 \times 10^{-5} \text{ min}^{-1}$ | Beta ($\beta^-$) / Gamma | [¹⁷⁷Lu] Dotatate Neuroendocrine Theranostics |
+| **Technetium-99m** | $^{99m}\text{Tc}$ | $6.01 \text{ hours}$ | $0.0019232 \text{ min}^{-1}$ | Isomeric Gamma ($\gamma$) | SPECT Cardiac Perfusion |
 
 ---
 
@@ -339,7 +374,7 @@ curl http://localhost:8080/actuator/health
 curl -X POST http://localhost:8080/api/v1/orders \
   -H "Content-Type: application/json" \
   -d '{
-    "protocolCode": "PROT-ONC-001",
+    "protocolCode": "PET-F18-AMYLOID-301",
     "siteCode": "SITE-JHU-01",
     "orderedActivityMci": 10.0,
     "requestedDoseTime": "2026-10-01T14:30:00Z",
@@ -361,7 +396,7 @@ curl -X POST http://localhost:8080/api/v1/orders/{orderId}/qa-release \
   -d '{
     "assayedActivityMci": 20.1,
     "qaReviewerName": "Dr. Marcus Vance, PharmD",
-    "releaseJustification": "USP <823> Radiochemical Purity > 98.5% confirmed by Radio-HPLC",
+    "releaseJustification": "USP &lt;823&gt; Radiochemical Purity &gt; 98.5% confirmed by Radio-HPLC",
     "electronicSignature": "ESIG_MVANCE_TOKEN_99218"
   }'
 ```
@@ -377,10 +412,10 @@ curl -X GET http://localhost:8080/api/v1/audit-trail/verify
 
 | Metric | Target | Measured (Production Profile) |
 |:---|:---:|:---:|
-| **P99 API Response Latency** | $< 50 \text{ ms}$ | **$12.4 \text{ ms}$** |
-| **Decay Math Precision** | $10^{-6} \text{ mCi}$ | **Zero-drift exact double precision** |
-| **Audit Verification Speed** | $> 10,000 \text{ records/sec}$ | **$48,500 \text{ records/sec}$ (SHA-256 native)** |
-| **Temporal Workflow Durability** | $100\%$ crash-recovery | **Zero state loss across worker restarts** |
+| **P99 API Response Latency** | &lt; 50 ms | **12.4 ms** |
+| **Decay Math Precision** | 10⁻⁶ mCi | **Zero-drift exact double precision** |
+| **Audit Verification Speed** | &gt; 10,000 records/sec | **48,500 records/sec (SHA-256 native)** |
+| **Temporal Workflow Durability** | 100% crash-recovery | **Zero state loss across worker restarts** |
 
 ---
 
